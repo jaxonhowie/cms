@@ -46,12 +46,11 @@ public interface UserInfoMapper {
      */
     int updateByPrimaryKey(UserInfo record);
 
-
     /**
      * 判断密码是否正确
      * @param loginname
+     * @param password
      * @return
      */
-    UserInfo selectByPassword(@Param("loginname") String loginname ,@Param("password") String password);
-
+    UserInfo selectByPassword(@Param("loginname") String loginname , @Param("password") String password);
 }

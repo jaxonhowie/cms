@@ -13,7 +13,6 @@ CREATE TABLE
         crt_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
         lst_upd_user VARCHAR(20),
         lst_upd_time TIMESTAMP NULL ,
-        lst_upd_date DATE,
         rec_status CHAR(1) DEFAULT '0',
         scr_level CHAR(2) DEFAULT '0',
         lst_login_time TIMESTAMP NULL,
