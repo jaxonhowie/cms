@@ -29,13 +29,13 @@ public class IndexController {
      * @param maps
      * @return
      */
-    @RequestMapping("/loginIndex")
+    @RequestMapping("/login")
     public String login(Model model, Map<String, Object> maps) {
         return "login";
     }
 
 
-    @RequestMapping("/login")
+    @RequestMapping("/index")
     public String userLogin(Model model, Map<String, Object> map, @RequestParam(defaultValue = "") String loginName,
                             @RequestParam(defaultValue = "") String password) {
         UserInfo userInfo=userInfoMapper.selectByPassword(loginName,password);

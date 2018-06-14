@@ -7,28 +7,28 @@
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- basic styles -->
-    <link href="${ctx}/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="${ctx}/css/font-awesome.min.css" />
+    <link href="${ctx}/cms/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="${ctx}/cms/assets/css/font-awesome.min.css" />
 
     <!-- page specific plugin styles -->
 
     <!-- ace styles -->
 
-    <link rel="stylesheet" href="/css/ace.min.css" />
-    <link rel="stylesheet" href="/css/ace-rtl.min.css" />
-    <link rel="stylesheet" href="/css/ace-skins.min.css" />
+    <link rel="stylesheet" href="/cms/assets/css/ace.min.css" />
+    <link rel="stylesheet" href="/cms/assets/css/ace-rtl.min.css" />
+    <link rel="stylesheet" href="/cms/assets/css/ace-skins.min.css" />
 
     <!-- inline styles related to this page -->
 
     <!-- ace settings handler -->
 
-    <script src="${ctx}/js/ace-extra.min.js"></script>
+    <script src="${ctx}/cms/assets/js/ace-extra.min.js"></script>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 
     <!--[if lt IE 9]>
-    <script src="${ctx}/js/html5shiv.js"></script>
-    <script src="${ctx}/js/respond.min.js"></script>
+    <script src="${ctx}/cms/assets/js/html5shiv.js"></script>
+    <script src="${ctx}/cms/assets/js/respond.min.js"></script>
     <![endif]-->
 </head>
 
@@ -1091,7 +1091,7 @@
 
                                                 <div class="itemdiv dialogdiv">
                                                     <div class="user">
-                                                        <img alt="John's Avatar" src="${ctx}/avatars/avatar.png" />
+                                                        <img alt="John's Avatar" src="${ctx}/cms/assets/avatars/avatar.png" />
                                                     </div>
 
                                                     <div class="body">
@@ -1115,7 +1115,7 @@
 
                                                 <div class="itemdiv dialogdiv">
                                                     <div class="user">
-                                                        <img alt="Bob's Avatar" src="${ctx}/avatars/user.jpg" />
+                                                        <img alt="Bob's Avatar" src="${ctx}/cms/assets/avatars/user.jpg" />
                                                     </div>
 
                                                     <div class="body">
@@ -1140,7 +1140,7 @@
 
                                                 <div class="itemdiv dialogdiv">
                                                     <div class="user">
-                                                        <img alt="Jim's Avatar" src="${ctx}/avatars/avatar4.png" />
+                                                        <img alt="Jim's Avatar" src="${ctx}/cms/assets/avatars/avatar4.png" />
                                                     </div>
 
                                                     <div class="body">
@@ -1164,7 +1164,7 @@
 
                                                 <div class="itemdiv dialogdiv">
                                                     <div class="user">
-                                                        <img alt="Alexa's Avatar" src="${ctx}/avatars/avatar1.png" />
+                                                        <img alt="Alexa's Avatar" src="${ctx}/cms/assets/avatars/avatar1.png" />
                                                     </div>
 
                                                     <div class="body">
@@ -1277,24 +1277,24 @@
 <script type="text/javascript">
     if("ontouchend" in document) document.write("<script src='${ctx}/js/jquery.mobile.custom.min.js'>"+"<"+"script>");
 </script>
-<script src="${ctx}/js/bootstrap.min.js"></script>
-<script src="${ctx}/js/typeahead-bs2.min.js"></script>
+<script src="${ctx}/cms/assets/js/bootstrap.min.js"></script>
+<script src="${ctx}/cms/assets/js/typeahead-bs2.min.js"></script>
 
 <!-- page specific plugin scripts -->
 
-<script src="${ctx}/js/jquery-ui-1.10.3.custom.min.js"></script>
-<script src="${ctx}/js/jquery.ui.touch-punch.min.js"></script>
-<script src="${ctx}/js/jquery.slimscroll.min.js"></script>
-<script src="${ctx}/js/jquery.easy-pie-chart.min.js"></script>
-<script src="${ctx}/js/jquery.sparkline.min.js"></script>
-<script src="${ctx}/js/flot/jquery.flot.min.js"></script>
-<script src="${ctx}/js/flot/jquery.flot.pie.min.js"></script>
-<script src="${ctx}/js/flot/jquery.flot.resize.min.js"></script>
+<script src="${ctx}/cms/assets/js/jquery-ui-1.10.3.custom.min.js"></script>
+<script src="${ctx}/cms/assets/js/jquery.ui.touch-punch.min.js"></script>
+<script src="${ctx}/cms/assets/js/jquery.slimscroll.min.js"></script>
+<script src="${ctx}/cms/assets/js/jquery.easy-pie-chart.min.js"></script>
+<script src="${ctx}/cms/assets/js/jquery.sparkline.min.js"></script>
+<script src="${ctx}/cms/assets/js/flot/jquery.flot.min.js"></script>
+<script src="${ctx}/cms/assets/js/flot/jquery.flot.pie.min.js"></script>
+<script src="${ctx}/cms/assets/js/flot/jquery.flot.resize.min.js"></script>
 
 <!-- ace scripts -->
 
-<script src="${ctx}/js/ace-elements.min.js"></script>
-<script src="${ctx}/js/ace.min.js"></script>
+<script src="${ctx}/cms/assets/js/ace-elements.min.js"></script>
+<script src="${ctx}/cms/assets/js/ace.min.js"></script>
 
 <!-- inline scripts related to this page -->
 

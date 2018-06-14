@@ -52,7 +52,7 @@
 
                                     <div class="space-6"></div>
                                     <span class="red">${error!''}</span>
-                                    <form action="/cms/login" method="post">
+                                    <form action="/cms/index" method="post">
                                         <fieldset>
                                             <label class="block clearfix">
 														<span class="block input-icon input-icon-right">
