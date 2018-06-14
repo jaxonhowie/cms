@@ -38,9 +38,7 @@ public class IndexController {
     @RequestMapping("/login")
     public String userLogin(Model model, Map<String, Object> map, @RequestParam(defaultValue = "") String loginName,
                             @RequestParam(defaultValue = "") String password) {
-
         UserInfo userInfo=userInfoMapper.selectByPassword(loginName,password);
-
         if (userInfo ==null) {
             map.put("error", "用户名或密码错误");
             return "login";
