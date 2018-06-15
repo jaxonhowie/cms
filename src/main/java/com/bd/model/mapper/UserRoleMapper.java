@@ -1,4 +1,4 @@
-package com.bd.dao.mapper;
+package com.bd.model.mapper;
 
 import com.bd.model.Role;
 import com.bd.model.UserRole;

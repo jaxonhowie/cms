@@ -1,7 +1,7 @@
 package com.bd.service.impl;
 
-import com.bd.dao.mapper.MenuMapper;
 import com.bd.model.Menu;
+import com.bd.model.mapper.MenuMapper;
 import com.bd.service.RoleMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

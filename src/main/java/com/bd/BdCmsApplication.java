@@ -4,14 +4,15 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
+import org.springframework.boot.web.support.SpringBootServletInitializer;
 
 /**
  * @author Administrator
  */
+@MapperScan(basePackages={"com.bd.model.mapper"})
 @SpringBootApplication
-@MapperScan("com.bd.dao.mapper")
 @ServletComponentScan
-public class BdCmsApplication  {
+public class BdCmsApplication extends SpringBootServletInitializer {
 
     public static void main(String[] args) {
         SpringApplication.run(BdCmsApplication.class, args);

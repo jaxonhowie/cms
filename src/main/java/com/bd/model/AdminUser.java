@@ -7,7 +7,7 @@ import java.util.Date;
 
 /**
  * 系统用户
- * Create by Raye on 2018年3月1日21:12:38
+ * @author Administrator
  */
 @Data
 public class AdminUser {

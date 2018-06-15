@@ -1,10 +1,10 @@
 package com.bd.service.impl;
 
-import com.bd.dao.mapper.AdminUserMapper;
-import com.bd.dao.mapper.UserRoleMapper;
 import com.bd.model.AdminUser;
 import com.bd.model.Role;
 import com.bd.model.WebResult;
+import com.bd.model.mapper.AdminUserMapper;
+import com.bd.model.mapper.UserRoleMapper;
 import com.bd.service.AdminUserService;
 import com.bd.util.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,24 +17,26 @@ import java.util.List;
 
 /**
  * 系统用户相关业务接口实现类
- * Created by Raye on 2017/3/21.
+ *
+ * @author niujian
+ * @date 2017/3/21
  */
 @Service
 public class AdminUserServiceImpl implements AdminUserService {
 
     @Autowired
-    private AdminUserMapper mapper;
+    private AdminUserMapper userMapper;
     @Autowired
     private UserRoleMapper userRoleMapper;
 
     @Override
     public List<AdminUser> select(int page, int pageSize, String query) {
-        return mapper.selectByQuery((page - 1) * pageSize,pageSize,"%"+query+"%");
+        return userMapper.selectByQuery((page - 1) * pageSize,pageSize,"%"+query+"%");
     }
 
     @Override
     public int selectCount(String query) {
-        return mapper.selectCountByName("%"+query+"%");
+        return userMapper.selectCountByName("%"+query+"%");
     }
 
     @Override
@@ -42,30 +44,30 @@ public class AdminUserServiceImpl implements AdminUserService {
         AdminUser temp = new AdminUser();
         temp.setName(name);
         temp.setPsw(MD5Util.MD5(pwd));
-        return mapper.selectOne(temp);
+        return userMapper.selectOne(temp);
     }
 
     @Override
     public AdminUser selectById(int id) {
-        return mapper.selectByPrimaryKey(id);
+        return userMapper.selectByPrimaryKey(id);
     }
 
     @Override
     public boolean insert(AdminUser user) {
         user.setPsw(MD5Util.MD5(user.getPsw()));
-        return mapper.insertSelective(user) > 0;
+        return userMapper.insertSelective(user) > 0;
     }
 
     @Override
     public boolean update(AdminUser user) {
         user.setPsw(null);
-        return mapper.updateByPrimaryKeySelective(user) > 0;
+        return userMapper.updateByPrimaryKeySelective(user) > 0;
     }
 
     @Transactional
     @Override
     public boolean delete(int id) {
-        mapper.deleteByPrimaryKey(id);
+        userMapper.deleteByPrimaryKey(id);
         userRoleMapper.deleteByUserId(id);
         return true;
     }
@@ -91,12 +93,12 @@ public class AdminUserServiceImpl implements AdminUserService {
 
     @Override
     public WebResult updatePass(int userId, String psw, String oldPsw) {
-        AdminUser user = mapper.selectByPrimaryKey(userId);
+        AdminUser user = userMapper.selectByPrimaryKey(userId);
         if(user.getPsw().equalsIgnoreCase(MD5Util.MD5(oldPsw))){
             user.setUpdateuser(userId);
             user.setUpdatetime(new Date());
             user.setPsw(MD5Util.MD5(psw));
-            if(mapper.updateByPrimaryKeySelective(user) > 0){
+            if(userMapper.updateByPrimaryKeySelective(user) > 0){
                 return WebResult.success();
             }else{
                 return WebResult.unKnown();

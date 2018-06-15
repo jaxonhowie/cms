@@ -36,14 +36,14 @@ public class DruidDataSourceConfig  implements EnvironmentAware {
         logger.info("注入druid！！！");
         DruidDataSource datasource = new DruidDataSource();
         datasource.setUrl(propertyResolver.getProperty("url"));
-        datasource.setDriverClassName(propertyResolver.getProperty("driver-class-name"));
+        datasource.setDriverClassName(propertyResolver.getProperty("driverClassName"));
         datasource.setUsername(propertyResolver.getProperty("username"));
         datasource.setPassword(propertyResolver.getProperty("password"));
-        datasource.setInitialSize(Integer.valueOf(propertyResolver.getProperty("initial-size")));
-        datasource.setMinIdle(Integer.valueOf(propertyResolver.getProperty("min-idle")));
-        datasource.setMaxWait(Long.valueOf(propertyResolver.getProperty("max-wait")));
-        datasource.setMaxActive(Integer.valueOf(propertyResolver.getProperty("max-active")));
-        datasource.setMinEvictableIdleTimeMillis(Long.valueOf(propertyResolver.getProperty("min-evictable-idle-time-millis")));
+        datasource.setInitialSize(Integer.valueOf(propertyResolver.getProperty("initialSize")));
+        datasource.setMinIdle(Integer.valueOf(propertyResolver.getProperty("minIdle")));
+        datasource.setMaxWait(Long.valueOf(propertyResolver.getProperty("maxWait")));
+        datasource.setMaxActive(Integer.valueOf(propertyResolver.getProperty("maxActive")));
+        datasource.setMinEvictableIdleTimeMillis(Long.valueOf(propertyResolver.getProperty("minEvictableIdleTimeMillis")));
         try {
 			datasource.setFilters("stat,wall,stat,log4j,default");
 		} catch (Exception e) {
@@ -56,7 +56,7 @@ public class DruidDataSourceConfig  implements EnvironmentAware {
     @Bean
     public MapperScannerConfigurer scannerConfigurer(){
         MapperScannerConfigurer configurer = new MapperScannerConfigurer();
-        configurer.setBasePackage("com.bd.dao.mapper");
+        configurer.setBasePackage("com.bd.**.mapper");
         configurer.setMarkerInterface(Mapper.class);
         return configurer;
     }

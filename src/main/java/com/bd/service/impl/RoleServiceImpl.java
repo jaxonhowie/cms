@@ -1,9 +1,9 @@
 package com.bd.service.impl;
 
-import com.bd.dao.mapper.RoleMapper;
-import com.bd.dao.mapper.RoleMenuMapper;
-import com.bd.dao.mapper.UserRoleMapper;
 import com.bd.model.Role;
+import com.bd.model.mapper.RoleMapper;
+import com.bd.model.mapper.RoleMenuMapper;
+import com.bd.model.mapper.UserRoleMapper;
 import com.bd.service.RoleService;
 import com.bd.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;

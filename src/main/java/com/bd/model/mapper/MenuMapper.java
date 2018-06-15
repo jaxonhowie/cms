@@ -1,4 +1,4 @@
-package com.bd.dao.mapper;
+package com.bd.model.mapper;
 
 import com.bd.model.Menu;
 import org.apache.ibatis.annotations.Result;
