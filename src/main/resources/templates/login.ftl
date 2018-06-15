@@ -1,29 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta charset="utf-8" />
     <title>后台管理登录</title>
 
-    <meta name="description" content="User login page"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+    <meta name="description" content="User login page" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 
     <!-- bootstrap & fontawesome -->
-    <link rel="stylesheet" href="/cms/assets/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="/cms/assets/font-awesome/4.5.0/css/font-awesome.min.css"/>
-    <!-- text fonts -->
-    <link rel="stylesheet" href="/cms/assets/css/fonts.googleapis.com.css"/>
-    <!-- ace styles -->
-    <link rel="stylesheet" href="/cms/assets/css/ace.min.css"/>
-    <!--[if lte IE 9]>
-    <link rel="stylesheet" href="/cms/assets/css/ace-part2.min.css"/>
-    <![endif]-->
-    <link rel="stylesheet" href="/cms/assets/css/ace-rtl.min.css"/>
-    <!--[if lte IE 9]>
-    <link rel="stylesheet" href="/cms/assets/css/ace-ie.min.css"/>
-    <![endif]-->
-</head>
+    <link rel="stylesheet" href="/cms/assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/cms/assets/font-awesome/4.5.0/css/font-awesome.min.css" />
 
+    <!-- text fonts -->
+    <link rel="stylesheet" href="/cms/assets/css/fonts.googleapis.com.css" />
+
+    <!-- ace styles -->
+    <link rel="stylesheet" href="/cms/assets/css/ace.min.css" />
+
+    <!--[if lte IE 9]>
+    <link rel="stylesheet" href="/cms/assets/css/ace-part2.min.css" />
+    <![endif]-->
+    <link rel="stylesheet" href="/cms/assets/css/ace-rtl.min.css" />
+
+    <!--[if lte IE 9]>
+    <link rel="stylesheet" href="/cms/assets/css/ace-ie.min.css" />
+    <![endif]-->
+
+    <!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
+
+
+</head>
 
 <body class="login-layout light-login">
 <div class="main-container">
@@ -34,9 +41,8 @@
                     <div class="center">
                         <h1>
                             <i class="ace-icon fa fa-leaf green"></i>
-                            <span class="grey" id="id-text2">CMS后台管理</span>
+                            <span class="grey" id="id-text2">后台管理系统</span>
                         </h1>
-                        <#--<h4 class="blue" id="id-company-text">&copy;By Raye</h4>-->
                     </div>
 
                     <div class="space-6"></div>
@@ -52,18 +58,18 @@
 
                                     <div class="space-6"></div>
                                     <span class="red">${error!''}</span>
-                                    <form action="/cms/index" method="post">
+                                    <form action="/cms/admin/login" method="post">
                                         <fieldset>
                                             <label class="block clearfix">
 														<span class="block input-icon input-icon-right">
-															<input type="text" name="loginName" class="form-control" placeholder="请输入用户名/邮箱" />
+															<input type="text" name="name" class="form-control" placeholder="请输入用户名/邮箱" />
 															<i class="ace-icon fa fa-user"></i>
 														</span>
                                             </label>
 
                                             <label class="block clearfix">
 														<span class="block input-icon input-icon-right">
-															<input type="password" name="password" class="form-control" placeholder="请输入密码" />
+															<input type="password" name="pass" class="form-control" placeholder="请输入密码" />
 															<i class="ace-icon fa fa-lock"></i>
 														</span>
                                             </label>
@@ -142,6 +148,7 @@
                                 </div>
                             </div><!-- /.widget-body -->
                         </div><!-- /.forgot-box -->
+
                         <!-- BEGIN 主题选择 -->
                         <div class="navbar-fixed-top align-right">
                             <br />
@@ -167,12 +174,12 @@
     <!-- basic scripts -->
 
     <!--[if !IE]> -->
-    <script src="/cms/assets/js/jquery-2.1.4.min.js"></script>
+    <script src="/assets/js/jquery-2.1.4.min.js"></script>
 
     <!-- <![endif]-->
 
     <!--[if IE]>
-    <script src="/cms/assets/js/jquery-1.11.3.min.js"></script>
+    <script src="/assets/js/jquery-1.11.3.min.js"></script>
     <![endif]-->
     <script type="text/javascript">
         if('ontouchstart' in document.documentElement) document.write("<script src='/cms/assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
@@ -217,7 +224,5 @@
 
         });
     </script>
-    </body>
-
-
+</body>
 </html>

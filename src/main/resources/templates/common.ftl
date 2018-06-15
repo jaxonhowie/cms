@@ -1,7 +1,7 @@
 <!-- basic scripts -->
 
 <script type="text/javascript">
-    window.jQuery || document.write("<script src='${ctx}/assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
+    window.jQuery || document.write("<script src='${ctx}/cms/assets//js/jquery-2.0.3.min.js'>"+"<"+"/script>");
 </script>
 
 <script type="text/javascript">

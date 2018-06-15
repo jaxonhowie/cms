@@ -1,5 +1,6 @@
 package com.bd.controller;
 
+import com.bd.dao.mapper.MenuMapper;
 import com.bd.dao.UserInfoMapper;
 import com.bd.model.UserInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,10 @@ public class IndexController {
     UserInfoMapper userInfoMapper;
 
 
+    @Autowired
+    MenuMapper menuMapper;
+
+
     /**
      * 登录
      *
@@ -35,7 +40,7 @@ public class IndexController {
     }
 
 
-    @RequestMapping("/index")
+    @RequestMapping("/index1")
     public String userLogin(Model model, Map<String, Object> map, @RequestParam(defaultValue = "") String loginName,
                             @RequestParam(defaultValue = "") String password) {
         UserInfo userInfo=userInfoMapper.selectByPassword(loginName,password);
@@ -50,5 +55,20 @@ public class IndexController {
             return "index";
         }
     }
+
+
+//    /**
+//     * 进入系统管理首页
+//     * @param map
+//     * @return
+//     */
+//    @RequestMapping("index")
+//    public String index(ModelMap map, HttpSession session){
+//        AdminUser user = (AdminUser) session.getAttribute("loginUser");
+//        List<Menu> menus = menuMapper.selectByUser(user.getId());
+//
+//        map.put("treeMenu",menus);
+//        return "index";
+//    }
 
 }
