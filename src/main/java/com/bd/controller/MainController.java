@@ -4,6 +4,8 @@ import com.bd.model.AdminUser;
 import com.bd.model.Menu;
 import com.bd.service.AdminUserService;
 import com.bd.service.MenuService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -13,11 +15,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 import java.util.List;
 
 /**
  * 后台管理主控制器
- * Created by Raye on 2017/3/16.
+ *
+ * @author Administrator
  */
 @Controller
 @RequestMapping("admin")
@@ -28,27 +32,36 @@ public class MainController {
     @Autowired
     private AdminUserService adminUserService;
 
+    private Logger logger = LoggerFactory.getLogger(MainController.class);
+
     /**
      * 进入系统管理首页
+     *
      * @param map
      * @return
      */
     @RequestMapping("index")
-    public String index(ModelMap map, HttpSession session){
+    public String index(ModelMap map, HttpSession session) {
         AdminUser user = (AdminUser) session.getAttribute("loginUser");
+
+        if (user == null) {
+            map.put("error", "未登录");
+            return "login";
+        }
         List<Menu> menus = menuService.selectByUser(user.getId());
 
-        map.put("treeMenu",menus);
+        map.put("treeMenu", menus);
         return "index";
     }
 
     /**
      * 进入登录页面
+     *
      * @return
      */
     @GetMapping(value = "login")
-    public String login(@RequestParam(defaultValue = "0") int type){
-        if(type == 1){
+    public String login(@RequestParam(defaultValue = "0") int type) {
+        if (type == 1) {
             return "nologin";
         }
         return "login";
@@ -56,27 +69,30 @@ public class MainController {
 
 
     @PostMapping(value = "login")
-    public String login(@RequestParam(defaultValue = "") String name, @RequestParam(defaultValue = "")  String pass,
-                        ModelMap map, HttpSession session){
-        AdminUser user = adminUserService.login(name,pass);
-        if(user == null){
-            map.put("error","用户名或密码错误");
+    public String login(@RequestParam(defaultValue = "") String name, @RequestParam(defaultValue = "") String pass,
+                        ModelMap map, HttpSession session) {
+        AdminUser user = adminUserService.login(name, pass);
+        if (user == null) {
+            map.put("error", "用户名或密码错误");
             return "login";
         }
-        session.setAttribute("loginUser",user);
-        session.setAttribute("authorities",menuService.selectAuthorities(user.getId()));
+        user.setLogintime(new Date());
+        adminUserService.update(user);
+        session.setAttribute("loginUser", user);
+        session.setAttribute("authorities", menuService.selectAuthorities(user.getId()));
         return "redirect:/admin/index";
     }
 
     /**
      * 注销登录
+     *
      * @param session
      * @return
      */
     @RequestMapping("loginout")
-    public String loginOut(HttpSession session){
-        session.setAttribute("loginUser",null);
-        session.setAttribute("authorities",null);
+    public String loginOut(HttpSession session) {
+        session.setAttribute("loginUser", null);
+        session.setAttribute("authorities", null);
         return "login";
     }
 }
