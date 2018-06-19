@@ -121,11 +121,11 @@ CREATE TABLE
     )
     ENGINE=InnoDB DEFAULT CHARSET=gbk;
 
-    CREATE TABLE
+CREATE TABLE
     admin_user
     (
         id INT NOT NULL AUTO_INCREMENT COMMENT '用户表主键',
-        tenantid INT NOT NULL COMMENT '租户id，0为系统用户',
+        tenantid INT NOT NULL  default  0  COMMENT '租户id，0为系统用户',
         name VARCHAR(20) NOT NULL COMMENT '用户名',
         psw VARCHAR(32) NOT NULL COMMENT '用户密码MD5加密',
         email VARCHAR(32) NOT NULL COMMENT '用户邮箱',
@@ -140,6 +140,9 @@ CREATE TABLE
         PRIMARY KEY (id)
     )
     ENGINE=InnoDB DEFAULT CHARSET=gbk;
+
+    INSERT INTO admin_user (id, tenantid, name, psw, email, creator, createtime, flag, logintime, updateuser, updatetime) VALUES (-1, 0, 'root', '63A9F0EA7BB98050796B649E85481845', 'admin@raye.wang', 0, '2018-05-28 10:53:05', 1, '2017-04-07 22:23:15', -1, '2017-12-19 03:04:59');
+
 
     CREATE TABLE
     user_role
@@ -190,3 +193,20 @@ INSERT INTO role (id, name, createtime, creator, description, updateuser, update
 
 INSERT INTO user_role (userid, roleid, creator, createtime) VALUES (-1, 1, -1, '2018-03-05 23:37:04');
 
+
+
+CREATE TABLE
+    tenant
+    (
+        id INT NOT NULL AUTO_INCREMENT COMMENT '租户主键id',
+        tenantname VARCHAR(32) NOT NULL COMMENT '租户名称',
+        account VARCHAR(32) NOT NULL COMMENT '租户联系人',
+        phone VARCHAR(12) NOT NULL COMMENT '租户手机号',
+        begintime TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON
+    UPDATE
+        CURRENT_TIMESTAMP COMMENT '租户有效期开始时间',
+        endtime TIMESTAMP DEFAULT '0000-00-00 00:00:00' COMMENT '租户有效期结束时间',
+        flag INT DEFAULT '1' NOT NULL COMMENT '租户状态，0  未启用  1 启用  与时间共同控制&&',
+        PRIMARY KEY (id)
+    )
+    ENGINE=InnoDB DEFAULT CHARSET=gbk;
