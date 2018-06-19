@@ -164,7 +164,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                    ${(authorities?seq_contains("/admin/menu/edit") || authorities?seq_contains("/admin/menu/delete"))?string("<button class='btn btn-info' type='button' style='margin-left: 20px;' onclick='add()'><i class='ace-icon fa fa-check bigger-110'></i>保存</button>","")}
+                                    ${(authorities?seq_contains("/admin/menu/edit") || authorities?seq_contains("/admin/menu/delete"))?string("<button class='btn btn-info' type='button' style='margin-left: 20px; margin-bottom:20px;' onclick='add()'><i class='ace-icon fa fa-check bigger-110'></i>保存</button>","")}
 
                                 </form>
                             </div>

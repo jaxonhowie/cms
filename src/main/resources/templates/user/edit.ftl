@@ -90,7 +90,7 @@
                 </select>
                     </div>
             </div>
-            ${authorities?seq_contains("/admin/user/edit")?string('<button class="btn btn-info" type="button" style="margin-left: 20px;" onclick="add()">
+            ${authorities?seq_contains("/admin/user/edit")?string('<button class="btn btn-info" type="button" style="margin-left: 20px; margin-bottom:20px;" onclick="add()">
                 <i class="ace-icon fa fa-check bigger-110"></i>
                 保存
             </button>','')}
@@ -158,6 +158,7 @@
                 }
             },
             error: function (response) {
+                alert("response");
                 alert("链接服务器失败");
             }
         });

@@ -7,6 +7,8 @@ import com.bd.model.mapper.AdminUserMapper;
 import com.bd.model.mapper.UserRoleMapper;
 import com.bd.service.AdminUserService;
 import com.bd.util.MD5Util;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,14 +31,16 @@ public class AdminUserServiceImpl implements AdminUserService {
     @Autowired
     private UserRoleMapper userRoleMapper;
 
+    Logger logger = LoggerFactory.getLogger(AdminUserServiceImpl.class);
+
     @Override
     public List<AdminUser> select(int page, int pageSize, String query) {
-        return userMapper.selectByQuery((page - 1) * pageSize,pageSize,"%"+query+"%");
+        return userMapper.selectByQuery((page - 1) * pageSize, pageSize, "%" + query + "%");
     }
 
     @Override
     public int selectCount(String query) {
-        return userMapper.selectCountByName("%"+query+"%");
+        return userMapper.selectCountByName("%" + query + "%");
     }
 
     @Override
@@ -54,6 +58,7 @@ public class AdminUserServiceImpl implements AdminUserService {
 
     @Override
     public boolean insert(AdminUser user) {
+        logger.info("user is :"+user.toString());
         user.setPsw(MD5Util.MD5(user.getPsw()));
         return userMapper.insertSelective(user) > 0;
     }
@@ -80,13 +85,13 @@ public class AdminUserServiceImpl implements AdminUserService {
 
     @Override
     public boolean updateRoleMenu(String ids, int userid, int creater) {
-        if(ids.length() > 0){
-            ids = ids.substring(0,ids.length()-1);
+        if (ids.length() > 0) {
+            ids = ids.substring(0, ids.length() - 1);
         }
-        HashMap<String,Object> map = new HashMap<String, Object>();
-        map.put("roleids",ids);
-        map.put("creator",creater);
-        map.put("userid",userid);
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        map.put("roleids", ids);
+        map.put("creator", creater);
+        map.put("userid", userid);
         userRoleMapper.userRoleUpdate(map);
         return true;
     }
@@ -94,16 +99,16 @@ public class AdminUserServiceImpl implements AdminUserService {
     @Override
     public WebResult updatePass(int userId, String psw, String oldPsw) {
         AdminUser user = userMapper.selectByPrimaryKey(userId);
-        if(user.getPsw().equalsIgnoreCase(MD5Util.MD5(oldPsw))){
+        if (user.getPsw().equalsIgnoreCase(MD5Util.MD5(oldPsw))) {
             user.setUpdateuser(userId);
             user.setUpdatetime(new Date());
             user.setPsw(MD5Util.MD5(psw));
-            if(userMapper.updateByPrimaryKeySelective(user) > 0){
+            if (userMapper.updateByPrimaryKeySelective(user) > 0) {
                 return WebResult.success();
-            }else{
+            } else {
                 return WebResult.unKnown();
             }
-        }else{
+        } else {
             return WebResult.error("旧密码错误");
         }
     }

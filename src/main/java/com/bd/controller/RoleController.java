@@ -7,6 +7,8 @@ import com.bd.model.WebResult;
 import com.bd.service.RoleMenuService;
 import com.bd.service.RoleService;
 import com.google.gson.Gson;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -31,6 +33,8 @@ public class RoleController {
     private RoleService roleService;
     @Autowired
     private RoleMenuService roleMenuService;
+
+    private Logger logger= LoggerFactory.getLogger(RoleController.class);
 
     /**
      * 进入角色列表管理页面
@@ -65,6 +69,8 @@ public class RoleController {
     @RequestMapping(value = "edit",method = RequestMethod.GET)
     public String edit(@RequestParam(defaultValue = "0") int id, ModelMap map){
         if(id != 0){
+
+            logger.info("=============="+id);
             map.put("role",roleService.selectById(id));
         }
         return "/role/edit";

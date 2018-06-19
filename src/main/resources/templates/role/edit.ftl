@@ -70,7 +70,7 @@
                     <textarea class="form-control" name="description" id="form-field-8" placeholder="角色描述" style="margin: 0px -0.015625px 0px 0px; height: 150px; width: 409px;">${(role.description)!}</textarea>
                 </div>
             </div>
-            ${authorities?seq_contains("/admin/role/edit")?string('<button class="btn btn-info" type="button" style="margin-left: 20px;" onclick="add()">
+            ${authorities?seq_contains("/admin/role/edit")?string('<button class="btn btn-info " type="button" style="margin-left: 20px; margin-bottom:20px;" onclick="add()">
                 <i class="ace-icon fa fa-check bigger-110"></i>
                 保存
             </button>','')}

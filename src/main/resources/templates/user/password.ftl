@@ -78,7 +78,7 @@
 
 
 
-            ${authorities?seq_contains("/admin/user/updatepass")?string('<button class="btn btn-info" type="button" style="margin-left: 20px;" onclick="add()">
+            ${authorities?seq_contains("/admin/user/updatepass")?string('<button class="btn btn-info" type="button" style="margin-left: 20px;margin-bottom:20px;" onclick="add()">
                 <i class="ace-icon fa fa-check bigger-110"></i>
                 保存
             </button>','')}
