@@ -7,12 +7,14 @@ import java.util.Date;
 
 /**
  * 系统角色
+ * @author Administrator
  */
 @Data
 public class Role {
     private Integer id;
 
-    private String name;
+
+    @Transient    private String name;
 
     private Date createtime;
 
@@ -25,6 +27,5 @@ public class Role {
     private Date updatetime;
     @Transient
     private int userid;
-    @Transient
     private String createuser;
 }

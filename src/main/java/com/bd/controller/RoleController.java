@@ -31,6 +31,7 @@ public class RoleController {
 
     @Autowired
     private RoleService roleService;
+
     @Autowired
     private RoleMenuService roleMenuService;
 
@@ -69,8 +70,6 @@ public class RoleController {
     @RequestMapping(value = "edit",method = RequestMethod.GET)
     public String edit(@RequestParam(defaultValue = "0") int id, ModelMap map){
         if(id != 0){
-
-            logger.info("=============="+id);
             map.put("role",roleService.selectById(id));
         }
         return "/role/edit";
