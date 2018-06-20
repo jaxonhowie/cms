@@ -8,7 +8,6 @@ import java.util.List;
 
 /**
  * 角色相关业务接口
- * Created by Raye on 2017/3/18.
  */
 public interface RoleService {
 

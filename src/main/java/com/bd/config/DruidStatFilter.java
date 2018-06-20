@@ -11,8 +11,6 @@ initParams={
 })
 /**
  * Druid拦截器，用于查看Druid监控
- * @author Raye
- * @since 2016年10月7日14:59:27
  */
 public class DruidStatFilter extends WebStatFilter {
 

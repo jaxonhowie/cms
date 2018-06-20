@@ -2,7 +2,6 @@ package com.bd.util;
 
 /**
  * 加密相关工具类
- * Created by Raye on 2016/11/29.
  */
 
 public class EncryptionUtils {

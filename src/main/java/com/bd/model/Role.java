@@ -7,7 +7,6 @@ import java.util.Date;
 
 /**
  * 系统角色
- * Create by Raye on 2018年3月1日21:13:03
  */
 @Data
 public class Role {

@@ -7,8 +7,6 @@ import javax.servlet.annotation.WebServlet;
 
 /**
  * Druid的Servlet
- * @author Raye
- * @since 2016年10月7日14:13:39
  */
 @SuppressWarnings("serial")
 @WebServlet(urlPatterns = "/druid/*",

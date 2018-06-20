@@ -1,7 +1,10 @@
 package com.bd.service.impl;
 
+import com.bd.model.AdminUser;
 import com.bd.model.Menu;
+import com.bd.model.mapper.AdminUserMapper;
 import com.bd.model.mapper.MenuMapper;
+import com.bd.model.mapper.RoleMenuMapper;
 import com.bd.service.RoleMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,30 +22,37 @@ public class RoleMenuServiceImpl implements RoleMenuService {
 
     @Autowired
     private MenuMapper mapper;
+
+    @Autowired
+    private AdminUserMapper adminUserMapper;
+
+    @Autowired
+    private RoleMenuMapper roleMenuMapper;
+
     @Override
     public List<Menu> selectByRoleId(int id) {
-        HashMap<Integer,ArrayList<Menu>> map = new HashMap<Integer, ArrayList<Menu>>();
+        HashMap<Integer, ArrayList<Menu>> map = new HashMap<Integer, ArrayList<Menu>>();
         List<Menu> menus = mapper.selectByRoleId(id);
-        for(Menu menu : menus){
+        for (Menu menu : menus) {
             int parentid = menu.getParentid();
-            if(menu.getRoleid() != 0){
+            if (menu.getRoleid() != 0) {
                 menu.setAdditionalParameters(new HashMap<String, Object>());
-                menu.getAdditionalParameters().put("item-selected",true);
+                menu.getAdditionalParameters().put("item-selected", true);
             }
-            if(map.containsKey(parentid)){
+            if (map.containsKey(parentid)) {
                 map.get(parentid).add(menu);
-            }else{
+            } else {
                 ArrayList<Menu> temp = new ArrayList<Menu>();
                 temp.add(menu);
-                map.put(parentid,temp);
+                map.put(parentid, temp);
             }
         }
-        for(Menu menu : menus){
+        for (Menu menu : menus) {
             int mid = menu.getId();
-            if(map.containsKey(mid)){
+            if (map.containsKey(mid)) {
                 menu.setType("folder");
                 menu.setChildren(map.get(mid));
-            }else{
+            } else {
                 menu.setType("item");
             }
         }
@@ -50,15 +60,20 @@ public class RoleMenuServiceImpl implements RoleMenuService {
     }
 
     @Override
-    public boolean updateRoleMenu(String ids,int roleid,int userid) {
-        if(ids.length() > 0){
-            ids = ids.substring(0,ids.length()-1);
+    public boolean updateRoleMenu(String ids, int roleid, int userid) {
+        if (ids.length() > 0) {
+            ids = ids.substring(0, ids.length() - 1);
         }
-        HashMap<String,Object> map = new HashMap<String, Object>();
-        map.put("menuids",ids);
-        map.put("roleid",roleid);
-        map.put("userid",userid);
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        map.put("menuids", ids);
+        map.put("roleid", roleid);
+        map.put("userid", userid);
+
+
+
         mapper.roleMenuUpdate(map);
+
+
         return true;
     }
 }

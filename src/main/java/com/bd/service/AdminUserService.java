@@ -10,7 +10,6 @@ import java.util.List;
 
 /**
  * 系统用户相关控制器
- * Created by Raye on 2017/3/21.
  */
 public interface AdminUserService {
 

@@ -15,8 +15,6 @@ import javax.sql.DataSource;
 
 /**
  * Druid的DataResource配置类
- * @author Raye
- * @since 2016年10月7日14:14:18
  */
 @Configuration
 public class DruidDataSourceConfig  implements EnvironmentAware {

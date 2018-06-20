@@ -8,7 +8,6 @@ import java.util.List;
 
 /**
  * 角色拥有菜单相关业务接口
- * Created by Raye on 2017/3/23.
  */
 public interface RoleMenuService {
 

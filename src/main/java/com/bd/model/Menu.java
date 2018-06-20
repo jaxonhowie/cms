@@ -10,7 +10,6 @@ import java.util.List;
 
 /**
  * 系统菜单
- * Create by Raye on 2018年3月1日21:12:51
  */
 @Data
 public class Menu {

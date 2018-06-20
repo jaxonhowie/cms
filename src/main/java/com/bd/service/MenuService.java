@@ -8,8 +8,6 @@ import java.util.List;
 
 /**
  * 菜单相关数据库操作业务接口
- * @author Raye
- * @since 2016年12月1日17:15:52
  */
 public interface MenuService {
 

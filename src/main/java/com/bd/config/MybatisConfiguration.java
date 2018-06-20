@@ -22,9 +22,6 @@ import javax.sql.DataSource;
 
 /**
  * MyBatis的配置类
- * 
- * @author Raye
- * @since 2016年10月7日14:13:39
  */
 @Configuration
 @AutoConfigureAfter({ DruidDataSourceConfig.class })

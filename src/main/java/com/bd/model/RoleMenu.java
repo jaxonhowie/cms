@@ -13,7 +13,6 @@ import java.util.Date;
 
 /**
  * 角色和菜单关联
- * Create by Raye on 2018年3月1日21:13:41
  */
 @Data
 public class RoleMenu {
