@@ -2,6 +2,7 @@ package com.bd.model;
 
 import lombok.Data;
 
+import javax.persistence.Id;
 import javax.persistence.Transient;
 import java.util.Date;
 
@@ -11,10 +12,10 @@ import java.util.Date;
  */
 @Data
 public class Role {
+    @Id
     private Integer id;
 
-
-    @Transient    private String name;
+    private String name;
 
     private Date createtime;
 
@@ -27,5 +28,6 @@ public class Role {
     private Date updatetime;
     @Transient
     private int userid;
+    @Transient
     private String createuser;
 }

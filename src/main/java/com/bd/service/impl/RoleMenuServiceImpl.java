@@ -1,15 +1,19 @@
 package com.bd.service.impl;
 
+import com.bd.common.Constants;
 import com.bd.model.AdminUser;
 import com.bd.model.Menu;
+import com.bd.model.RoleMenu;
 import com.bd.model.mapper.AdminUserMapper;
 import com.bd.model.mapper.MenuMapper;
 import com.bd.model.mapper.RoleMenuMapper;
 import com.bd.service.RoleMenuService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -69,10 +73,21 @@ public class RoleMenuServiceImpl implements RoleMenuService {
         map.put("roleid", roleid);
         map.put("userid", userid);
 
+        String [] idss= StringUtils.split(ids,",");
 
+        for (int i = 0; i < idss.length; i++) {
+            RoleMenu roleMenu=new RoleMenu();
+            roleMenu.setMenuid(Integer.parseInt(idss[i]));
+            roleMenu.setRoleid(roleid);
+            roleMenu.setCreator(userid);
+            roleMenu.setCreatetime(new Date());
 
-        mapper.roleMenuUpdate(map);
+            roleMenu.setFlag(Constants.ROLE_FLAG_TRUE);
 
+            roleMenuMapper.insert(roleMenu);
+        }
+
+        //mapper.roleMenuUpdate(map);
 
         return true;
     }

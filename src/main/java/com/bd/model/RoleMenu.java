@@ -21,7 +21,7 @@ public class RoleMenu {
     @Id
     private Integer roleid;
 
-    private Integer flag;
+    private String flag;
 
     private Integer creator;
 

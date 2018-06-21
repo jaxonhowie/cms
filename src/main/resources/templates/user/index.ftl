@@ -125,7 +125,7 @@
                             <td class="hidden-480"><#if user.creator==0>系统初始化用户<#else>${user.createUser!}</#if></td>
                             <td><#if user.flag==1><p class="green">启用<#else ><p class="red">禁用</#if></p></td>
                             <td class="hidden-480">
-                                <#if user.lastLoginTime??>${user.lastLoginTime?string("yyyy-MM-dd HH:mm:ss")}<#else >从未登录</#if>
+                                <#if user.logintime??>${user.logintime?string("yyyy-MM-dd HH:mm:ss")}<#else >从未登录</#if>
 
                             </td>
 
