@@ -85,12 +85,12 @@ public class AdminUserServiceImpl implements AdminUserService {
         return roles;
     }
 
+    //TODO 仅新增可以，更新还有bug
     @Override
     public boolean updateRoleMenu(String ids, int userid, int creater) {
         if (ids.length() > 0) {
             ids = ids.substring(0, ids.length() - 1);
         }
-
         String [] idss= StringUtils.split(ids,",");
         for (int i = 0; i < idss.length; i++) {
 
