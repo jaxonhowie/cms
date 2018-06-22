@@ -19,7 +19,8 @@ import java.util.List;
 
 /**
  * 角色相关权限业务业务接口实现类
- * Created by Raye on 2017/3/23.
+ *
+ * @author Administrator
  */
 @Service
 public class RoleMenuServiceImpl implements RoleMenuService {
@@ -73,10 +74,10 @@ public class RoleMenuServiceImpl implements RoleMenuService {
         map.put("roleid", roleid);
         map.put("userid", userid);
 
-        String [] idss= StringUtils.split(ids,",");
+        String[] idss = StringUtils.split(ids, ",");
 
         for (int i = 0; i < idss.length; i++) {
-            RoleMenu roleMenu=new RoleMenu();
+            RoleMenu roleMenu = new RoleMenu();
             roleMenu.setMenuid(Integer.parseInt(idss[i]));
             roleMenu.setRoleid(roleid);
             roleMenu.setCreator(userid);

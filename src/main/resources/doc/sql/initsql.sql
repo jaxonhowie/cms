@@ -205,8 +205,24 @@ CREATE TABLE
         begintime TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON
     UPDATE
         CURRENT_TIMESTAMP COMMENT '租户有效期开始时间',
-        endtime TIMESTAMP DEFAULT '0000-00-00 00:00:00' COMMENT '租户有效期结束时间',
+        endtime TIMESTAMP DEFAULT '2018-06-22 12:00:00' COMMENT '租户有效期结束时间',
         flag INT DEFAULT '1' NOT NULL COMMENT '租户状态，0  未启用  1 启用  与时间共同控制&&',
         PRIMARY KEY (id)
     )
     ENGINE=InnoDB DEFAULT CHARSET=gbk;
+
+
+CREATE TABLE
+    localdb.project_info
+    (
+        oid VARCHAR(32) NOT NULL  COMMENT '主键ID',
+        name VARCHAR(256) COMMENT '项目名称',
+        abbr_name VARCHAR(32) COMMENT '简称',
+        project_desc VARCHAR(256) COMMENT '项目描述',
+        status CHAR(2) DEFAULT '00' NOT NULL  COMMENT '状态 0:正常',
+        oitime TIMESTAMP DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+        outime TIMESTAMP   DEFAULT '2018-06-22 12:00:00' COMMENT '更新时间',
+        isdel CHAR(1) DEFAULT '0' NOT NULL,
+        PRIMARY KEY (oid)
+    )
+    ENGINE=InnoDB DEFAULT CHARSET=gbk

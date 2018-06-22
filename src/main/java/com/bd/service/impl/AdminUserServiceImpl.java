@@ -2,11 +2,13 @@ package com.bd.service.impl;
 
 import com.bd.model.AdminUser;
 import com.bd.model.Role;
+import com.bd.model.UserRole;
 import com.bd.model.WebResult;
 import com.bd.model.mapper.AdminUserMapper;
 import com.bd.model.mapper.UserRoleMapper;
 import com.bd.service.AdminUserService;
 import com.bd.util.MD5Util;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -88,11 +90,19 @@ public class AdminUserServiceImpl implements AdminUserService {
         if (ids.length() > 0) {
             ids = ids.substring(0, ids.length() - 1);
         }
-        HashMap<String, Object> map = new HashMap<String, Object>();
-        map.put("roleids", ids);
-        map.put("creator", creater);
-        map.put("userid", userid);
-        userRoleMapper.userRoleUpdate(map);
+
+        String [] idss= StringUtils.split(ids,",");
+        for (int i = 0; i < idss.length; i++) {
+
+            UserRole userRole=new UserRole();
+            userRole.setRoleid(Integer.parseInt(idss[i]));
+            userRole.setUserid(userid);
+            userRole.setCreator(creater);
+            userRole.setCreatetime(new Date());
+            userRoleMapper.insert(userRole);
+            
+        }
+
         return true;
     }
 
