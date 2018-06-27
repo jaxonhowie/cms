@@ -30,6 +30,7 @@ public class AdminUserServiceImpl implements AdminUserService {
 
     @Autowired
     private AdminUserMapper userMapper;
+
     @Autowired
     private UserRoleMapper userRoleMapper;
 
@@ -60,7 +61,7 @@ public class AdminUserServiceImpl implements AdminUserService {
 
     @Override
     public boolean insert(AdminUser user) {
-        logger.info("user is :"+user.toString());
+        logger.info("user is :" + user.toString());
         user.setPsw(MD5Util.MD5(user.getPsw()));
         user.setLogintime(new Date());
         return userMapper.insertSelective(user) > 0;
@@ -92,16 +93,16 @@ public class AdminUserServiceImpl implements AdminUserService {
         if (ids.length() > 0) {
             ids = ids.substring(0, ids.length() - 1);
         }
-        String [] idss= StringUtils.split(ids,",");
+        String[] idss = StringUtils.split(ids, ",");
         for (int i = 0; i < idss.length; i++) {
 
-            UserRole userRole=new UserRole();
+            UserRole userRole = new UserRole();
             userRole.setRoleid(Integer.parseInt(idss[i]));
             userRole.setUserid(userid);
             userRole.setCreator(creater);
             userRole.setCreatetime(new Date());
             userRoleMapper.insert(userRole);
-            
+
         }
 
         return true;

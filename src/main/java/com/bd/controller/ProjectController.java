@@ -27,7 +27,7 @@ public class ProjectController {
     private Logger logger = LoggerFactory.getLogger(ProjectInfo.class);
 
     @Autowired
-    ProjectInfoService projectService;
+    private ProjectInfoService projectService;
 
     /**
      * 分页查询用户查询

@@ -5,6 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
+import org.springframework.context.annotation.ComponentScan;
 
 /**
  * @author Administrator
@@ -12,7 +13,8 @@ import org.springframework.boot.web.support.SpringBootServletInitializer;
 @MapperScan(basePackages = {"com.bd.model.mapper"})
 @SpringBootApplication
 @ServletComponentScan
-public class BdCmsApplication extends SpringBootServletInitializer {
+@ComponentScan(basePackages = { "com" })
+public class BdCmsApplication  {
 
     public static void main(String[] args) {
         System.setProperty("tomcat.util.http.parser.HttpParser.requestTargetAllow", "|{}");

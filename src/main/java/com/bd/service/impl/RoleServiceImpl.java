@@ -10,14 +10,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * 角色相关业务接口实现类
+ *
  * @author Administrator
  */
 @Service
-public class RoleServiceImpl implements RoleService {
+public class RoleServiceImpl implements RoleService ,Serializable{
 
     @Autowired
     private RoleMapper mapper;
@@ -28,12 +30,12 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public List<Role> select(int page, int pageSize, String query) {
-        return mapper.selectByQuery((page - 1) * pageSize,pageSize,"%"+query+"%");
+        return mapper.selectByQuery((page - 1) * pageSize, pageSize, "%" + query + "%");
     }
 
     @Override
     public int selectCount(String query) {
-        return mapper.selectCountByName("%"+query+"%");
+        return mapper.selectCountByName("%" + query + "%");
     }
 
     @Override
@@ -55,8 +57,8 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public boolean delete(String id) {
         String[] ids = id.split(",");
-        for(String temp : ids) {
-            if(StringUtils.isEmpty(temp)){
+        for (String temp : ids) {
+            if (StringUtils.isEmpty(temp)) {
                 continue;
             }
             mapper.deleteByRoleid(temp);
