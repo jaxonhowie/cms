@@ -1,5 +1,7 @@
 package com.bd.util;
 
+import java.util.UUID;
+
 /**
  * @author Administrator
  */
@@ -33,4 +35,29 @@ public class StringUtils {
         }
         return false;
     }
+
+
+    /**
+     * 生成 UUID
+     *
+     * @return
+     */
+    public static String getUUID() {
+        UUID uuid = UUID.randomUUID();
+        String s = uuid.toString();
+        int p = 0;
+        int j = 0;
+        char[] buf = new char[32];
+        while (p < s.length()) {
+            char c = s.charAt(p);
+            p += 1;
+            if (c == '-') {
+                continue;
+            }
+            buf[j] = c;
+            j += 1;
+        }
+        return new String(buf);
+    }
+
 }

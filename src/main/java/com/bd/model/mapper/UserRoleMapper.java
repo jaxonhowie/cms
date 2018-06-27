@@ -40,6 +40,6 @@ public interface UserRoleMapper extends Mapper<UserRole> {
     @Select({"CALL user_role_update(#{roleids},#{userid},#{creator})"})
     void userRoleUpdate(HashMap<String, Object> map);
 
-    @Delete({"DELETE user_role WHERE userid=#{id}"})
+    @Delete({"DELETE FROM user_role WHERE userid=#{id}"})
     int deleteByUserId(int id);
 }

@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <meta charset="utf-8"/>
-    <title>DB后台管理系统</title>
+    <title>后台管理系统</title>
 
     <meta name="description" content="overview &amp; stats"/>
     <meta name="viewport"

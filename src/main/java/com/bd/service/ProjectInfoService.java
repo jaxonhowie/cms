@@ -32,10 +32,10 @@ public interface ProjectInfoService {
     /**
      * 根据id查询项目
      *
-     * @param id
+     * @param oid
      * @return
      */
-    public ProjectInfo selectById(int id);
+    public ProjectInfo selectById(String oid);
 
     /**
      * 添加一个项目
@@ -43,7 +43,7 @@ public interface ProjectInfoService {
      * @param projectInfo
      * @return
      */
-    public boolean insert(ProjectInfo projectInfo);
+    public int insert(ProjectInfo projectInfo);
 
     /**
      * 更新一个系统用户
@@ -59,7 +59,7 @@ public interface ProjectInfoService {
      * @param id
      * @return
      */
-    public boolean delete(int id);
+    public int delete(String id);
 }
 
 
