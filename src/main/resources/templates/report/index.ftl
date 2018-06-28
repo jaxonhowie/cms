@@ -17,7 +17,7 @@
     <!-- page specific plugin styles -->
 
     <link rel="stylesheet" href="/assets/css/jquery-ui-1.10.3.custom.min.css"/>
-    <#--<link rel="stylesheet" href="/assets/css/chosen.css"/>-->
+<#--<link rel="stylesheet" href="/assets/css/chosen.css"/>-->
     <link rel="stylesheet" href="/assets/css/datepicker.css"/>
     <link rel="stylesheet" href="/assets/css/bootstrap-timepicker.css"/>
     <link rel="stylesheet" href="/assets/css/daterangepicker.css"/>
@@ -57,125 +57,142 @@
 
     <div class="page-content">
 
-        <div class="row">
+        <div class="main-container ace-save-state" id="main-container">
+            <script type="text/javascript">
+                try {
+                    ace.settings.loadState('main-container')
+                } catch (e) {
+                }
+            </script>
 
-            <div class="col-xs-12">
-                <!-- PAGE CONTENT BEGINS -->
 
-                <form class="form-horizontal" role="form">
-
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">工作内容 </label>
-                    <#--<label>工作内容</label>-->
-                        <div class="col-sm-9">
-                            <input type="text" id="form-field-1" placeholder="填写工作内容" class="col-xs-10 col-sm-5"/>
-                        </div>
+            <div class="page-content">
+                <div class="col-sm-5 widget-box widget-color-blue2">
+                    <div class="widget-header">
+                        <h4 class="widget-title lighter smaller">填写周报</h4>
                     </div>
+                    <form class="form-horizontal" id="roleform" role="form" style="margin-top: 20px;">
+                    <#--<input type="hidden" name="id" id="id" value="${(role.id)!}" />-->
 
-                    <div class="col-xs-12 col-sm-4">
-                        <div>
-                            <label class="col-sm-3 control-label no-padding-righ" for="form-field-select-1">项目名称</label>
-                            <select class="form-control" id="form-field-select-1">
-                                <option value="">&nbsp;</option>
-                                <option value="ZNXG">智能写稿</option>
-                                <option value="AK">测试项目1</option>
-                                <option value="AZ">其他</option>
-                            </select>
-                        </div>
-
-
-                        <label  class="col-sm-3 control-label no-padding-righ" for="id-date-range-picker-1">时间范围</label>
-                        <div class="row">
-                            <div class="col-xs-8 col-sm-11">
-                                <div class="input-group">
-																	<span class="input-group-addon">
-																		<#--<i class="fa fa-calendar bigger-110"></i>-->
-                                                                            <i class="fa fa-calendar bigger-110"></i>
-																	</span>
-
+                        <div class="form-group">
+                            <label class=" col-sm-3 control-label no-padding-right"> 时间范围 </label>
+                            <div class="col-sm-9">
+                                <div class="input-group col-xs-10 col-sm-8">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-calendar bigger-110"></i>
+                                    </span>
                                     <input class="form-control" type="text" name="date-range-picker"
                                            id="id-date-range-picker-1"/>
                                 </div>
+
                             </div>
                         </div>
-                        <hr/>
 
-                        <h1>测试</h1>
+                        <div class="form-group">
+                            <label class=" col-sm-3 control-label no-padding-right"> 相关项目 </label>
+                            <div class="col-sm-9">
+                                <select class="col-xs-10 col-sm-5" id="form-field-select-1">
+                                    <option value="">&nbsp;</option>
+                                    <option value="ZNXG">智能写稿</option>
+                                    <option value="AK">测试项目1</option>
+                                    <option value="AZ">其他</option>
+                                </select>
+                            </div>
+                        </div>
 
-                </form>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right"> 进度 </label>
+                            <div class="col-sm-9">
+                                <input type="text" id="name" name="name" placeholder="实际进度（百分比）"
+                                       class="col-xs-10 col-sm-5">
+                            </div>
 
-            </div>
-        </div>
+                        </div>
 
-    </div><!-- /.page-content -->
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right"> 工作内容 </label>
+                            <div class="col-sm-9">
+                                <textarea class="form-control" name="description" id="form-field-8" placeholder="角色描述"
+                                          style="margin: 0px -0.015625px 0px 0px; height: 150px; width: 409px;">${(role.description)!}</textarea>
+                            </div>
+                        </div>
+                    ${authorities?seq_contains("/admin/role/edit")?string('<button class="btn btn-info " type="button" style="margin-left: 20px; margin-bottom:20px;" onclick="add()">
+                <i class="ace-icon fa fa-check bigger-110"></i>
+                保存
+            </button>','')}
 
+                    </form>
+                </div>
 
-</div><!-- /.main-container -->
-<!-- basic scripts -->
-
-<!--[if !IE]> -->
-<script src="/assets/js/jquery-2.1.4.min.js"></script>
-
-<!-- <![endif]-->
-
-<!--[if IE]>
-<script src="/assets/js/jquery-1.11.3.min.js"></script>
-<![endif]-->
-<script type="text/javascript">
-    if ('ontouchstart' in document.documentElement) document.write("<script src='/assets/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");
-</script>
-<script src="/assets/js/bootstrap.min.js"></script>
-
-<!-- page specific plugin scripts -->
-
-<script src="/assets/js/jquery-ui-1.10.3.custom.min.js"></script>
-<script src="/assets/js/jquery.ui.touch-punch.min.js"></script>
-<script src="/assets/js/chosen.jquery.min.js"></script>
-<script src="/assets/js/fuelux/fuelux.spinner.min.js"></script>
-<script src="/assets/js/date-time/bootstrap-datepicker.min.js"></script>
-<script src="/assets/js/date-time/bootstrap-timepicker.min.js"></script>
-<script src="/assets/js/date-time/moment.min.js"></script>
-<script src="/assets/js/date-time/daterangepicker.min.js"></script>
-<script src="/assets/js/bootstrap-colorpicker.min.js"></script>
-<script src="/assets/js/jquery.knob.min.js"></script>
-<script src="/assets/js/jquery.autosize.min.js"></script>
-<script src="/assets/js/jquery.inputlimiter.1.3.1.min.js"></script>
-<script src="/assets/js/jquery.maskedinput.min.js"></script>
-<script src="/assets/js/bootstrap-tag.min.js"></script>
+        </div><!-- /.page-content -->
 
 
-<!-- ace scripts -->
-<script src="/assets/js/ace-elements.min.js"></script>
-<script src="/assets/js/ace.min.js"></script>
-<script src="/assets/js/page.js"></script>
+    </div><!-- /.main-container -->
+    <!-- basic scripts -->
 
-<script src="/assets/js/bootbox.js"></script>
-<script src="/assets/js/utils.js"></script>
-<!-- inline scripts related to this page -->
-<script type="text/javascript">
+    <!--[if !IE]> -->
+    <script src="/assets/js/jquery-2.1.4.min.js"></script>
 
-    $('.date-picker').datepicker({autoclose: true}).next().on(ace.click_event, function () {
-        $(this).prev().focus();
-    });
-    $('input[name=date-range-picker]').daterangepicker().prev().on(ace.click_event, function () {
-        $(this).next().focus();
-    });
+    <!-- <![endif]-->
 
-    $('#timepicker1').timepicker({
-        minuteStep: 1,
-        showSeconds: true,
-        showMeridian: false
-    }).next().on(ace.click_event, function () {
-        $(this).prev().focus();
-    });
+    <!--[if IE]>
+    <script src="/assets/js/jquery-1.11.3.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript">
+        if ('ontouchstart' in document.documentElement) document.write("<script src='/assets/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");
+    </script>
+    <script src="/assets/js/bootstrap.min.js"></script>
+
+    <!-- page specific plugin scripts -->
+
+    <script src="/assets/js/jquery-ui-1.10.3.custom.min.js"></script>
+    <script src="/assets/js/jquery.ui.touch-punch.min.js"></script>
+    <script src="/assets/js/chosen.jquery.min.js"></script>
+    <script src="/assets/js/fuelux/fuelux.spinner.min.js"></script>
+    <script src="/assets/js/date-time/bootstrap-datepicker.min.js"></script>
+    <script src="/assets/js/date-time/bootstrap-timepicker.min.js"></script>
+    <script src="/assets/js/date-time/moment.min.js"></script>
+    <script src="/assets/js/date-time/daterangepicker.min.js"></script>
+    <script src="/assets/js/bootstrap-colorpicker.min.js"></script>
+    <script src="/assets/js/jquery.knob.min.js"></script>
+    <script src="/assets/js/jquery.autosize.min.js"></script>
+    <script src="/assets/js/jquery.inputlimiter.1.3.1.min.js"></script>
+    <script src="/assets/js/jquery.maskedinput.min.js"></script>
+    <script src="/assets/js/bootstrap-tag.min.js"></script>
 
 
-    <#--new page({-->
-    <#--&lt;#&ndash;pageMain: "pagination", nowPage:${page!'1'}, count:${count}, pageSize:${pageSize!'10'},&ndash;&gt;-->
-    <#--&lt;#&ndash;url: "/project/list", params: "?pageSize=${pageSize}&query=${query}", pakey: "page"&ndash;&gt;});-->
-    <#--})-->
-    <#--;-->
+    <!-- ace scripts -->
+    <script src="/assets/js/ace-elements.min.js"></script>
+    <script src="/assets/js/ace.min.js"></script>
+    <script src="/assets/js/page.js"></script>
 
-</script>
+    <script src="/assets/js/bootbox.js"></script>
+    <script src="/assets/js/utils.js"></script>
+    <!-- inline scripts related to this page -->
+    <script type="text/javascript">
+
+        $('.date-picker').datepicker({autoclose: true}).next().on(ace.click_event, function () {
+            $(this).prev().focus();
+        });
+        $('input[name=date-range-picker]').daterangepicker().prev().on(ace.click_event, function () {
+            $(this).next().focus();
+        });
+
+        $('#timepicker1').timepicker({
+            minuteStep: 1,
+            showSeconds: true,
+            showMeridian: false
+        }).next().on(ace.click_event, function () {
+            $(this).prev().focus();
+        });
+
+
+        <#--new page({-->
+        <#--&lt;#&ndash;pageMain: "pagination", nowPage:${page!'1'}, count:${count}, pageSize:${pageSize!'10'},&ndash;&gt;-->
+        <#--&lt;#&ndash;url: "/project/list", params: "?pageSize=${pageSize}&query=${query}", pakey: "page"&ndash;&gt;});-->
+        <#--})-->
+        <#--;-->
+
+    </script>
 </body>
 </html>

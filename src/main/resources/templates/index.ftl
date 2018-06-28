@@ -70,7 +70,7 @@
                 <li class="light-blue dropdown-modal"><a
                         data-toggle="dropdown" href="#" class="dropdown-toggle"> <img
                         class="nav-user-photo" src="/assets/images/avatars/user.jpg"
-                        alt="Jason's Photo"/> <span class="user-info"> <small>中午好,</small>
+                        alt="Jason's Photo"/> <span class="user-info"> <small>您好,</small>
                 ${loginUser.name}
 						</span> <i class="ace-icon fa fa-caret-down"></i>
                 </a>
@@ -177,20 +177,20 @@
                             <div class="col-xs-12">
 
                                 <div class="tab-content">
-                                    <div class="alert alert-block alert-success">
-                                        <button type="button" class="close" data-dismiss="alert">
-                                            <i class="icon-remove"></i>
-                                        </button>
+                                    <#--<div class="alert alert-block alert-success">-->
+                                        <#--<button type="button" class="close" data-dismiss="alert">-->
+                                            <#--<i class="icon-remove"></i>-->
+                                        <#--</button>-->
 
-                                        <i class="icon-ok green"></i>
+                                        <#--<i class="icon-ok green"></i>-->
 
-                                        欢迎使用
-                                        <strong class="green">
-                                            Ace后台管理系统
-                                            <small>(v1.2)</small>
-                                        </strong>
-                                        ,轻量级好用的后台管理系统模版.
-                                    </div>
+                                        <#--欢迎使用-->
+                                        <#--<strong class="green">-->
+                                            <#--Ace后台管理系统-->
+                                            <#--<small>(v1.2)</small>-->
+                                        <#--</strong>-->
+                                        <#--,轻量级好用的后台管理系统模版.-->
+                                    <#--</div>-->
                                 <#--<div role="tabpanel" class="tab-pane active" id="Index">-->
                                 <#--欢迎使用后台管理系统-->
                                 <#--</div>-->
