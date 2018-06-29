@@ -3,6 +3,7 @@ package com.bd.service.impl;
 import com.bd.model.Report;
 import com.bd.model.mapper.ReportMapper;
 import com.bd.service.ReportService;
+import com.bd.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,8 +25,8 @@ public class ReportServiceImpl implements ReportService {
     }
 
     @Override
-    public int selectCount(String query) {
-        return 0;
+    public int selectCount(int query) {
+        return reportMapper.selectCount(query);
     }
 
     @Override
@@ -35,7 +36,8 @@ public class ReportServiceImpl implements ReportService {
 
     @Override
     public int insert(Report report) {
-        return 0;
+        report.setOid(StringUtils.getUUID());
+        return reportMapper.insert(report);
     }
 
     @Override
@@ -45,6 +47,13 @@ public class ReportServiceImpl implements ReportService {
 
     @Override
     public int delete(String id) {
-        return 0;
+        return reportMapper.deleteByPrimaryKey(id);
     }
+
+    @Override
+    public List<Report> selectReportInfo(int page, int pageSize, int userid) {
+        return reportMapper.selectReportInfo((page - 1) * pageSize, pageSize, userid);
+    }
+
+
 }

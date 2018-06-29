@@ -97,7 +97,7 @@ public interface ProjectInfoMapper {
      * @param name
      * @return
      */
-    @Select({"SELECT COUNT(1) FROM project_info"})
+    @Select({"SELECT COUNT(1) FROM project_info where isdel=0"})
     int selectCount(String name);
 
 }

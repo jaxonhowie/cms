@@ -4,12 +4,7 @@ import com.bd.model.Report;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
 
 public interface ReportMapper {
@@ -24,12 +19,12 @@ public interface ReportMapper {
             "projectid, rangeid, ",
             "content, progress, ",
             "start_time, end_time, oitime, ",
-            "`type`, isdel)",
+            "`type`)",
             "values (#{oid,jdbcType=VARCHAR}, #{userid,jdbcType=VARCHAR}, ",
             "#{projectid,jdbcType=VARCHAR}, #{rangeid,jdbcType=VARCHAR}, ",
             "#{content,jdbcType=VARCHAR}, #{progress,jdbcType=VARCHAR}, ",
             "#{startTime,jdbcType=DATE}, #{endTime,jdbcType=DATE}, #{oitime,jdbcType=TIMESTAMP}, ",
-            "#{type,jdbcType=CHAR}, #{isdel,jdbcType=CHAR})"
+            "#{type,jdbcType=CHAR})"
     })
     int insert(Report record);
 
@@ -76,6 +71,36 @@ public interface ReportMapper {
     })
     List<Report> selectAll();
 
+
+    @Select({
+            "SELECT" +
+                    "    a.oid ," +
+                    "    b.loginname as loginname," +
+                    "    c.name as projectname," +
+                    "    a.content ," +
+                    "    a.rangeid ," +
+                    "    a.progress ," +
+                    "    a.oitime ," +
+                    "     a.type "+
+                    "FROM" +
+                    "    report a," +
+                    "    admin_user b ," +
+                    "    project_info c" +
+                    " WHERE" +
+                    "    a.userid =b.id" +
+                    " AND a.projectid=c.oid  AND a.userid=#{userid} order by a.oitime  LIMIT #{page},#{pagesize}"
+    })
+    @Results({
+            @Result(column = "oid", property = "oid", jdbcType = JdbcType.VARCHAR, id = true),
+            @Result(column = "loginname", property = "loginname", jdbcType = JdbcType.VARCHAR),
+            @Result(column = "projectname", property = "projectname", jdbcType = JdbcType.VARCHAR),
+            @Result(column = "rangeid", property = "rangeid", jdbcType = JdbcType.VARCHAR),
+            @Result(column = "content", property = "content", jdbcType = JdbcType.VARCHAR),
+            @Result(column = "progress", property = "progress", jdbcType = JdbcType.VARCHAR),
+            @Result(column = "oitime", property = "oitime", jdbcType = JdbcType.TIMESTAMP)
+    })
+    List<Report> selectReportInfo(@Param("page") int page, @Param("pagesize") int pageSize,@Param("userid") int userid);
+
     @Update({
             "update report",
             "set userid = #{userid,jdbcType=VARCHAR},",
@@ -91,4 +116,7 @@ public interface ReportMapper {
             "where oid = #{oid,jdbcType=VARCHAR}"
     })
     int updateByPrimaryKey(Report record);
+
+    @Select("select count(1) from report where userid=#{userid} ")
+    int selectCount(@Param("userid") int userid);
 }

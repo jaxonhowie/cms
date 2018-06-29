@@ -34,5 +34,7 @@ public class AdminUser {
 
     private Date updatetime;
 
+    private String loginname;
+
 
 }

@@ -59,9 +59,15 @@
             <input type="hidden" name="id" id="id" value="${(user.id)!}" />
 
             <div class="form-group">
-                <label class="col-sm-3 control-label no-padding-right" > 用户名称 </label>
+                <label class="col-sm-3 control-label no-padding-right" > 用户账号 </label>
                 <div class="col-sm-9">
-                    <input type="text" id="name" name="name" value="${(user.name)!}" placeholder="用户名称" class="col-xs-10 col-sm-5">
+                    <input type="text" id="name" name="name" value="${(user.name)!}" placeholder="用户账号" class="col-xs-10 col-sm-5">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right" > 用户中文名 </label>
+                <div class="col-sm-9">
+                    <input type="text" id="loginname" name="name" value="${(user.loginname)!}" placeholder="用户中文名" class="col-xs-10 col-sm-5">
                 </div>
             </div>
             <div class="form-group">
@@ -147,7 +153,8 @@
                 name:$("#name").val(),
                 psw : $("input[name=psw]").val(),
                 email:$("input[name=email]").val(),
-                flag:$("select[name=flag]").val()
+                flag:$("select[name=flag]").val(),
+                loginname:$("#loginname").val()
             },
             success: function (response) {
                 if (response.code == 1){

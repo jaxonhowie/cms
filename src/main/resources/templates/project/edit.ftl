@@ -165,7 +165,8 @@
             success: function (response) {
                 if (response.code == 1) {
                     alert("更新成功", function () {
-                        self.location = document.referrer;
+//                        self.location = document.referrer;
+                        location.reload();
                     });
 
                 }

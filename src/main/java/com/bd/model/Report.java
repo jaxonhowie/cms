@@ -3,6 +3,9 @@ package com.bd.model;
 import java.io.Serializable;
 import java.util.Date;
 
+/**
+ * @author Administrator
+ */
 public class Report implements Serializable {
     private String oid;
 
@@ -25,6 +28,28 @@ public class Report implements Serializable {
     private String type;
 
     private String isdel;
+
+    //负责人
+    private String loginname;
+
+    //项目名称
+    private String projectname;
+
+    public String getLoginname() {
+        return loginname;
+    }
+
+    public void setLoginname(String loginname) {
+        this.loginname = loginname;
+    }
+
+    public String getProjectname() {
+        return projectname;
+    }
+
+    public void setProjectname(String projectname) {
+        this.projectname = projectname;
+    }
 
     private static final long serialVersionUID = 1L;
 
@@ -118,23 +143,20 @@ public class Report implements Serializable {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", oid=").append(oid);
-        sb.append(", userid=").append(userid);
-        sb.append(", projectid=").append(projectid);
-        sb.append(", rangeid=").append(rangeid);
-        sb.append(", content=").append(content);
-        sb.append(", progress=").append(progress);
-        sb.append(", startTime=").append(startTime);
-        sb.append(", endTime=").append(endTime);
-        sb.append(", oitime=").append(oitime);
-        sb.append(", type=").append(type);
-        sb.append(", isdel=").append(isdel);
-        sb.append(", serialVersionUID=").append(serialVersionUID);
-        sb.append("]");
-        return sb.toString();
+        return "Report{" +
+                "oid='" + oid + '\'' +
+                ", userid='" + userid + '\'' +
+                ", projectid='" + projectid + '\'' +
+                ", rangeid='" + rangeid + '\'' +
+                ", content='" + content + '\'' +
+                ", progress='" + progress + '\'' +
+                ", startTime=" + startTime +
+                ", endTime=" + endTime +
+                ", oitime=" + oitime +
+                ", type='" + type + '\'' +
+                ", isdel='" + isdel + '\'' +
+                ", loginname='" + loginname + '\'' +
+                ", projectname='" + projectname + '\'' +
+                '}';
     }
 }

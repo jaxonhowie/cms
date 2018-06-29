@@ -27,7 +27,7 @@ public interface ReportService {
      *
      * @return
      */
-    public int selectCount(String query);
+    public int selectCount(int query);
 
     /**
      * 根据id查询
@@ -60,4 +60,12 @@ public interface ReportService {
      * @return
      */
     public int delete(String id);
+
+    /**
+     *
+     * @param page
+     * @param pageSize
+     * @return
+     */
+    public List<Report> selectReportInfo(int page, int pageSize,int userid);
 }

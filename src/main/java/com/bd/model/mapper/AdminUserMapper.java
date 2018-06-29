@@ -11,7 +11,7 @@ public interface AdminUserMapper extends Mapper<AdminUser> {
 
     @Select({
             "select",
-            "u.id, u.name, u.email, u.creator, u.flag, u.logintime,c.name createuser",
+            "u.id, u.name, u.email, u.creator, u.flag, u.logintime, u.loginname,c.name createuser",
             "from admin_user u LEFT JOIN admin_user c ON u.creator=c.id",
             "where u.name LIKE #{query} LIMIT #{begin},#{pagesize}"
     })

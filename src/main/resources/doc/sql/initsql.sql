@@ -125,7 +125,7 @@ CREATE TABLE
     admin_user
     (
         id INT NOT NULL AUTO_INCREMENT COMMENT '用户表主键',
-        tenantid INT NOT NULL  default  0  COMMENT '租户id，0为系统用户',
+        tenantid INT DEFAULT '0' NOT NULL COMMENT '租户id，0为系统用户',
         name VARCHAR(20) NOT NULL COMMENT '用户名',
         psw VARCHAR(32) NOT NULL COMMENT '用户密码MD5加密',
         email VARCHAR(32) NOT NULL COMMENT '用户邮箱',
@@ -137,11 +137,12 @@ CREATE TABLE
         logintime TIMESTAMP DEFAULT '0000-00-00 00:00:00' COMMENT '最后登录时间',
         updateuser INT COMMENT '更新者id',
         updatetime TIMESTAMP NULL COMMENT '更新时间',
+        loginname VARCHAR(32) NOT NULL,
         PRIMARY KEY (id)
     )
     ENGINE=InnoDB DEFAULT CHARSET=gbk;
 
-    INSERT INTO admin_user (id, tenantid, name, psw, email, creator, createtime, flag, logintime, updateuser, updatetime) VALUES (-1, 0, 'root', '63A9F0EA7BB98050796B649E85481845', 'admin@raye.wang', 0, '2018-05-28 10:53:05', 1, '2017-04-07 22:23:15', -1, '2017-12-19 03:04:59');
+    INSERT INTO admin_user (id, tenantid, name, psw, email, creator, createtime, flag, logintime, updateuser, updatetime,loginname) VALUES (-1, 0, 'root', '63A9F0EA7BB98050796B649E85481845', 'admin@raye.wang', 0, '2018-05-28 10:53:05', 1, '2017-04-07 22:23:15', -1, '2017-12-19 03:04:59','管理员');
 
 
     CREATE TABLE
@@ -156,7 +157,7 @@ CREATE TABLE
     ENGINE=InnoDB DEFAULT CHARSET=gbk;
 
 
-    INSERT INTO menu (id, name, url, icon, menutype, display, parentid, creator, createtime, updateuser, updatetime, flag) VALUES (1, '系统首页', '/admin/index', null, '2', 1, 0, 0, '2017-03-31 20:16:57', 0, null, '1');
+INSERT INTO menu (id, name, url, icon, menutype, display, parentid, creator, createtime, updateuser, updatetime, flag) VALUES (1, '系统首页', '/admin/index', null, '2', 1, 0, 0, '2017-03-31 20:16:57', 0, null, '1');
 INSERT INTO menu (id, name, url, icon, menutype, display, parentid, creator, createtime, updateuser, updatetime, flag) VALUES (2, '修改密码', '/admin/user/updatepass', 'fa-wrench', '2', 0, 0, 0, '2017-04-05 21:33:39', 0, null, '1');
 INSERT INTO menu (id, name, url, icon, menutype, display, parentid, creator, createtime, updateuser, updatetime, flag) VALUES (3, '系统配置', '12', 'fa-wrench', '0', 1, 0, 0, '2017-03-31 20:16:43', 0, '2017-04-05 20:30:53', '1');
 INSERT INTO menu (id, name, url, icon, menutype, display, parentid, creator, createtime, updateuser, updatetime, flag) VALUES (4, '菜单配置', '/admin/menu', 'fa-list', '0', 1, 3, 0, '2017-03-31 20:16:45', 0, '2017-04-05 20:31:10', '1');
@@ -226,3 +227,51 @@ CREATE TABLE
         PRIMARY KEY (oid)
     )
     ENGINE=InnoDB DEFAULT CHARSET=gbk
+
+
+
+CREATE TABLE
+    report
+    (
+        oid VARCHAR(32) NOT NULL COMMENT '主键ID',
+        userid VARCHAR(32) NOT NULL COMMENT '用户ID',
+        projectid VARCHAR(32) NOT NULL COMMENT '项目ID',
+        rangeid VARCHAR(64) COMMENT '时间范围ID',
+        content VARCHAR(1024) COMMENT  ' 周报内容',
+        progress VARCHAR(5) COMMENT '进度',
+        start_time DATE COMMENT '开始时间',
+        end_time DATE  COMMENT '结束时间',
+        oitime TIMESTAMP DEFAULT CURRENT_TIMESTAMP COMMENT '入库时间',
+        type CHAR(1) DEFAULT '0' NOT NULL COMMENT '类型',
+        isdel CHAR(1) DEFAULT '0' NOT NULL  COMMENT '删除标识',
+        PRIMARY KEY (oid)
+    )
+    ENGINE=InnoDB DEFAULT CHARSET=gbk;
+
+CREATE TABLE
+    time_range
+    (
+        oid VARCHAR(32) NOT NULL,
+        content VARCHAR(64) NOT NULL,
+        isdel CHAR(1) DEFAULT '0' NOT NULL,
+        oitime TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON
+    UPDATE
+        CURRENT_TIMESTAMP
+    )
+    ENGINE=InnoDB DEFAULT CHARSET=gbk;
+
+
+SELECT
+    a.oid as ID,
+    b.loginname as 负责人,
+    c.name as 项目名称,
+    a.content as 工作内容,
+    a.rangeid as 时间范围,
+    a.progress as 实际进度
+FROM
+    report a,
+    admin_user b ,
+    project_info c
+WHERE
+    a.userid =b.id
+AND a.projectid=c.oid
