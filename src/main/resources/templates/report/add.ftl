@@ -82,7 +82,7 @@
                                         <i class="fa fa-calendar bigger-110"></i>
                                     </span>
                                     <input class="form-control" type="text" name="date-range-picker"
-                                           id="rangeid" data-date-format="yyyy-mm-dd hh:ii"/>
+                                           id="rangeid"/>
                                 </div>
 
                             </div>
@@ -121,7 +121,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right">  工作内容 </label>
+                            <label class="col-sm-3 control-label no-padding-right"> 工作内容 </label>
                             <div class="col-sm-9">
                                 <input type="text" id="content1" name="name" placeholder=" 工作内容"
                                        class="col-md-9 ">
@@ -160,18 +160,18 @@
         <!-- page specific plugin scripts -->
 
         <script src="/assets/js/jquery-ui-1.10.3.custom.min.js"></script>
-        <#--<script src="/assets/js/jquery.ui.touch-punch.min.js"></script>-->
-        <#--<script src="/assets/js/chosen.jquery.min.js"></script>-->
-        <#--<script src="/assets/js/fuelux/fuelux.spinner.min.js"></script>-->
+    <#--<script src="/assets/js/jquery.ui.touch-punch.min.js"></script>-->
+    <#--<script src="/assets/js/chosen.jquery.min.js"></script>-->
+    <#--<script src="/assets/js/fuelux/fuelux.spinner.min.js"></script>-->
         <script src="/assets/js/date-time/bootstrap-datepicker.min.js"></script>
         <script src="/assets/js/date-time/bootstrap-timepicker.min.js"></script>
         <script src="/assets/js/date-time/moment.min.js"></script>
         <script src="/assets/js/date-time/daterangepicker.min.js"></script>
         <script src="/assets/js/bootstrap-colorpicker.min.js"></script>
-        <#--<script src="/assets/js/jquery.knob.min.js"></script>-->
-        <#--<script src="/assets/js/jquery.autosize.min.js"></script>-->
-        <#--<script src="/assets/js/jquery.inputlimiter.1.3.1.min.js"></script>-->
-        <#--<script src="/assets/js/jquery.maskedinput.min.js"></script>-->
+    <#--<script src="/assets/js/jquery.knob.min.js"></script>-->
+    <#--<script src="/assets/js/jquery.autosize.min.js"></script>-->
+    <#--<script src="/assets/js/jquery.inputlimiter.1.3.1.min.js"></script>-->
+    <#--<script src="/assets/js/jquery.maskedinput.min.js"></script>-->
         <script src="/assets/js/bootstrap-tag.min.js"></script>
 
 
@@ -188,18 +188,32 @@
             $('.date-picker').datepicker({autoclose: true}).next().on(ace.click_event, function () {
                 $(this).prev().focus();
             });
-            $('input[name=date-range-picker]').daterangepicker().prev().on(ace.click_event, function () {
+
+            $('input[name=date-range-picker]').daterangepicker(
+                    {
+                        locale: {
+                            applyLabel: '确认',
+                            cancelLabel: '取消',
+                            fromLabel : '起始时间',
+                            toLabel : '结束时间',
+                            customRangeLabel : '自定义',
+                            firstDay : 1
+                        },
+                        format: 'YYYY/MM/DD'
+                    }
+            ).prev().on(ace.click_event, function () {
                 $(this).next().focus();
             });
 
-            $('#timepicker1').timepicker({
-                minuteStep: 1,
-                showSeconds: true,
-                showMeridian: false
-//                format:"yyyy-mm-dd"
-            }).next().on(ace.click_event, function () {
-                $(this).prev().focus();
-            });
+
+            //            $('#timepicker1').timepicker({
+            //                minuteStep: 1,
+            //                showSeconds: true,
+            //                showMeridian: false
+            ////                format:"yyyy-mm-dd"
+            //            }).next().on(ace.click_event, function () {
+            //                $(this).prev().focus();
+            //            });
 
 
             function add() {
@@ -209,20 +223,20 @@
 //                }
                 quickAjax({
                     url: '/report/add',
-                    method:"POST",
-                    data:{
-                        userid:$("#userid").val(),
-                        rangeid:$("#rangeid").val(),
-                        projectid:$("#projectid").val(),
-                        type:$("#type").val(),
-                        content:$("#content1").val(),
-                        progress:$("#progress").val()
+                    method: "POST",
+                    data: {
+                        userid: $("#userid").val(),
+                        rangeid: $("#rangeid").val(),
+                        projectid: $("#projectid").val(),
+                        type: $("#type").val(),
+                        content: $("#content1").val(),
+                        progress: $("#progress").val()
 //                        description:$("#form-field-8").val()
                     },
                     success: function (response) {
-                        if (response.code == 1){
-                            alert("更新成功",function(){
-                                self.location=document.referrer;
+                        if (response.code == 1) {
+                            alert("更新成功", function () {
+                                self.location = document.referrer;
                             });
 
                         }
