@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <meta charset="utf-8"/>
-    <title>周报信息</title>
+    <title>编辑周报</title>
 
     <meta name="description" content="Static &amp; Dynamic Tables"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
@@ -17,7 +17,7 @@
     <!-- page specific plugin styles -->
 
     <link rel="stylesheet" href="/assets/css/jquery-ui-1.10.3.custom.min.css"/>
-    <link rel="stylesheet" href="/assets/css/chosen.css"/>
+<#--<link rel="stylesheet" href="/assets/css/chosen.css"/>-->
     <link rel="stylesheet" href="/assets/css/datepicker.css"/>
     <link rel="stylesheet" href="/assets/css/bootstrap-timepicker.css"/>
     <link rel="stylesheet" href="/assets/css/daterangepicker.css"/>
@@ -69,11 +69,12 @@
             <div class="page-content">
                 <div class="col-sm-5 widget-box widget-color-blue2">
                     <div class="widget-header">
-                        <h4 class="widget-title lighter smaller">填写周报</h4>
+                        <h4 class="widget-title lighter smaller">编辑周报</h4>
                     </div>
                     <form class="form-horizontal" id="reportform" name="reportform" role="form"
                           style="margin-top: 20px;">
-                    <#--<input type="hidden" name="id" id="id" value="${(role.id)!}" />-->
+                        <input type="hidden" name="id" id="oid" value="${(report.oid)!}"/>
+                        <input type="hidden" name="userid" id="userid" value="${(report.userid)!}"/>
 
                         <div class="form-group">
                             <label class=" col-sm-3 control-label no-padding-right"> 时间范围 </label>
@@ -83,7 +84,8 @@
                                         <i class="fa fa-calendar bigger-110"></i>
                                     </span>
                                     <input class="form-control" type="text" name="date-range-picker"
-                                           id="rangeid"/>
+                                           id="rangeid"
+                                           value="${(report.rangeid)!}"/>
                                 </div>
 
                             </div>
@@ -94,10 +96,13 @@
                             <label class=" col-sm-3 control-label no-padding-right"> 相关项目 </label>
                             <div class="col-sm-9">
                                 <select name="parentId" class="col-xs-10 col-sm-5" id="projectid">
-                                    <option value="" selected="selected">---请选择---</option>
+                                <#--<option value="${report.oid}" selected="selected">${report.projectname!}</option>-->
+                                <#--<option value="" selected="selected">---请选择---</option>-->
                                 <#list projects as item>
-                                    <option value="${item.oid}">
+                                    <option value="${item.oid}"  <#if  item.oid==report.projectid >selected</#if>>
                                     ${item.name}
+
+                                        <#--<#if item.type == 0>&nbsp;&nbsp;|-<#elseif item.type == 1>&nbsp;&nbsp;&nbsp;&nbsp;|-<#else>|-</#if>${item.name}-->
                                     </option>
                                 </#list>
                                 </select>
@@ -108,9 +113,10 @@
                             <label class=" col-sm-3 control-label no-padding-right"> 类型 </label>
                             <div class="col-sm-9">
                                 <select class="col-xs-10 col-sm-5" id="type">
-                                    <option value="">&nbsp;</option>
-                                    <option value="0">本周周报</option>
-                                    <option value="1">下周周报</option>
+                                <#--<option value="0">本周周报</option>-->
+                                    <option value="0" <#if report?? && report.type=="0">selected</#if>>本周周报</option>
+                                    <option value="1" <#if report?? && report.type!="0">selected</#if>>下周计划</option>
+                                <#--<option value="1">下周周报</option>-->
                                 </select>
                             </div>
                         </div>
@@ -120,7 +126,7 @@
                             <label class="col-sm-3 control-label no-padding-right"> 进度 </label>
                             <div class="col-sm-9">
                                 <input type="text" id="progress" name="name" placeholder="实际进度（百分比）"
-                                       class="col-xs-10 col-sm-5">
+                                       class="col-xs-10 col-sm-5" value="${(report.progress)!}">
                             </div>
 
                         </div>
@@ -129,7 +135,7 @@
                             <label class="col-sm-3 control-label no-padding-right"> 工作内容 </label>
                             <div class="col-sm-9">
                                 <input type="text" id="content1" name="name" placeholder=" 工作内容"
-                                       class="col-md-9 ">
+                                       class="col-md-9 " value="${(report.content)!}">
                             </div>
 
                         </div>
@@ -165,18 +171,18 @@
         <!-- page specific plugin scripts -->
 
         <script src="/assets/js/jquery-ui-1.10.3.custom.min.js"></script>
-        <script src="/assets/js/jquery.ui.touch-punch.min.js"></script>
-        <script src="/assets/js/chosen.jquery.min.js"></script>
-        <script src="/assets/js/fuelux/fuelux.spinner.min.js"></script>
+    <#--<script src="/assets/js/jquery.ui.touch-punch.min.js"></script>-->
+    <#--<script src="/assets/js/chosen.jquery.min.js"></script>-->
+    <#--<script src="/assets/js/fuelux/fuelux.spinner.min.js"></script>-->
         <script src="/assets/js/date-time/bootstrap-datepicker.min.js"></script>
         <script src="/assets/js/date-time/bootstrap-timepicker.min.js"></script>
         <script src="/assets/js/date-time/moment.min.js"></script>
         <script src="/assets/js/date-time/daterangepicker.min.js"></script>
         <script src="/assets/js/bootstrap-colorpicker.min.js"></script>
-        <script src="/assets/js/jquery.knob.min.js"></script>
-        <script src="/assets/js/jquery.autosize.min.js"></script>
-        <script src="/assets/js/jquery.inputlimiter.1.3.1.min.js"></script>
-        <script src="/assets/js/jquery.maskedinput.min.js"></script>
+    <#--<script src="/assets/js/jquery.knob.min.js"></script>-->
+    <#--<script src="/assets/js/jquery.autosize.min.js"></script>-->
+    <#--<script src="/assets/js/jquery.inputlimiter.1.3.1.min.js"></script>-->
+    <#--<script src="/assets/js/jquery.maskedinput.min.js"></script>-->
         <script src="/assets/js/bootstrap-tag.min.js"></script>
 
         <!-- validate -->
@@ -214,13 +220,6 @@
             });
 
 
-            function isNo(str) {
-                var reg = /\D/;
-                return reg.test(str);
-                /*进行验证*/
-            }
-
-
             function add() {
                 if (!vali($("#rangeid"))) {
                     alert("时间范围不能为空");
@@ -238,30 +237,29 @@
                     alert("时间进度为空");
                     return;
                 }
-                if (isNo($("#progress"))) {
-                    alert("时间进度必须是0-100的数字");
-                    return;
-                }
                 if (!vali($("#content1"))) {
                     alert("工作内容不能为空");
                     return;
                 }
                 quickAjax({
-                    url: '/report/add',
+                    url: '/report/editReport',
                     method: "POST",
                     data: {
+                        oid: $("#oid").val(),
                         userid: $("#userid").val(),
                         rangeid: $("#rangeid").val(),
                         projectid: $("#projectid").val(),
                         type: $("#type").val(),
                         content: $("#content1").val(),
                         progress: $("#progress").val()
+//                        description:$("#form-field-8").val()
                     },
                     success: function (response) {
                         if (response.code == 1) {
                             alert("更新成功", function () {
                                 self.location = document.referrer;
                             });
+
                         }
                     },
                     error: function (response) {
@@ -269,6 +267,13 @@
                     }
                 });
             }
+
+
+            <#--new page({-->
+            <#--&lt;#&ndash;pageMain: "pagination", nowPage:${page!'1'}, count:${count}, pageSize:${pageSize!'10'},&ndash;&gt;-->
+            <#--&lt;#&ndash;url: "/project/list", params: "?pageSize=${pageSize}&query=${query}", pakey: "page"&ndash;&gt;});-->
+            <#--})-->
+            <#--;-->
 
         </script>
 </body>

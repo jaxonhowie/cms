@@ -53,9 +53,8 @@
         }
     </script>
 
-
     <div class="page-content">
-        <div class="col-xs-12"><a href="/report/edit">
+        <div class="col-xs-12"><a href="/report/addReport">
             <button class="btn btn-white btn-info btn-bold">
 
                 <i class="ace-icon fa fa-pencil-square-o bigger-120 blue"></i>
@@ -66,10 +65,6 @@
             <div class="table-header" style="margin-top: 10px;">
                 周报列表
             </div>
-
-            <!-- div.table-responsive -->
-
-            <!-- div.dataTables_borderWrap -->
             <div>
                 <div id="dynamic-table_wrapper" class="dataTables_wrapper form-inline no-footer">
                     <form method="get" action="/report/index" id="sform">
@@ -104,7 +99,7 @@
                             <th class="sorting_disabled" tabindex="0" rowspan="1" colspan="1">时间范围</th>
                             <th class="hidden-480 sorting_disabled" tabindex="0" rowspan="1" colspan="1">进度</th>
                             <th class="hidden-480 sorting_disabled" tabindex="0" rowspan="1" colspan="1">类型</th>
-                            <th class="hidden-480 sorting_disabled" tabindex="0" rowspan="1" colspan="1">创建时间</th>
+                            <th class="hidden-480 sorting_disabled" tabindex="0" rowspan="1" colspan="1">最后更新时间</th>
                             <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="">操作</th>
                         </tr>
                         </thead>
@@ -121,19 +116,15 @@
                             <td>${report.rangeid!}</td>
                             <td>${report.progress!}</td>
                             <td class="hidden-480"><#if report.type=='0'>本周周报<#else>下周计划</#if></td>
-                        <#--<td><#if report.type=='1'><p class="green">下周计划<#else ><p class="red">异常</#if></p>-->
                             </td>
                             <td class="hidden-480">
                             ${report.oitime?string("yyyy-MM-dd HH:mm:ss")}
                             </td>
                             <td>
                                 <div class="hidden-sm hidden-xs action-buttons">
-                                    <a class="green" href="/report/edit?id=${report.oid}" attr="编辑用户信息">
+                                    <a class="green" href="/report/edit?reportId=${report.oid}" attr="编辑用户信息">
                                         <i class="ace-icon fa fa-pencil bigger-130"></i>
                                     </a>
-                                    <#--<a class="green" href="/admin/user/role/?id=${report.oid}">-->
-                                        <#--<i class="ace-icon fa fa-cog bigger-130"></i>-->
-                                    <#--</a>-->
                                     <a class="red" onclick="del('${report.oid}')">
                                         <i class="ace-icon fa fa-trash-o bigger-130"></i>
                                     </a>
@@ -224,7 +215,7 @@
         });
         new page({
             pageMain: "pagination", nowPage:${page!'1'}, count:${count}, pageSize:${pageSize!'10'},
-            url: "/project/list", params: "?pageSize=${pageSize}&query=${query}", pakey: "page"
+            url: "/report/index", params: "?pageSize=${pageSize}&query=${query}", pakey: "page"
         });
     });
     /**

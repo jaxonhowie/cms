@@ -59,7 +59,7 @@
                 <h4 class="widget-title lighter smaller">编辑项目信息</h4>
             </div>
             <form class="form-horizontal" id="projectinfoform" projectinfo="form" style="margin-top: 20px;">
-                <input type="hidden" name="id" id="id" value="${(projectinfo.oid)!}"/>
+                <input type="hidden" name="id" id="oid" value="${(projectinfo.oid)!}"/>
                 <div class="form-group">
                     <label class="col-sm-3 control-label no-padding-right"> 项目名称 </label>
                     <div class="col-sm-9">
@@ -97,11 +97,6 @@
                         </select>
                     </div>
                 </div>
-            <#--${authorities?seq_contains("/project/edit")?string('<button class="btn btn-info" type="button" style="margin-left: 20px; margin-bottom:20px;" onclick="add()">-->
-            <#--<i class="ace-icon fa fa-check bigger-110"></i>-->
-            <#--保存-->
-            <#--</button>','')}-->
-
                 <button class="btn btn-info" type="button" style="margin-left: 20px; margin-bottom:20px;"
                         onclick="add()">
                     <i class="ace-icon fa fa-check bigger-110"></i>
@@ -155,7 +150,7 @@
             url: '/project/add',
             method: "POST",
             data: {
-                id: $("#id").val(),
+                oid: $("#oid").val(),
                 name: $("#name").val(),
                 abbrName: $("#abbrName").val(),
                 projectDesc: $("#projectDesc").val(),
@@ -165,8 +160,7 @@
             success: function (response) {
                 if (response.code == 1) {
                     alert("更新成功", function () {
-//                        self.location = document.referrer;
-                        location.reload();
+                        self.location = document.referrer;
                     });
 
                 }

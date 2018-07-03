@@ -1,5 +1,6 @@
 package com.bd.controller;
 
+import com.bd.common.Constants;
 import com.bd.model.ProjectInfo;
 import com.bd.model.WebResult;
 import com.bd.service.ProjectInfoService;
@@ -80,14 +81,21 @@ public class ProjectController {
     @RequestMapping("/add")
     @ResponseBody
     public WebResult addProject(ProjectInfo projectInfo) {
-
-        logger.info("参数：" + projectInfo.toString());
-
         if (projectInfo == null) {
             return WebResult.unKnown();
         }
+        //更新项目信息
+        if (projectService.selectById(projectInfo.getOid()) != null) {
+            if (projectService.update(projectInfo) > Constants.DB_SUCCESS_FLAG) {
+                logger.info("更新项目信息" + projectInfo.toString());
+                return WebResult.success();
+            } else {
+                return WebResult.unKnown();
+            }
+        }
 
-        if (projectService.insert(projectInfo) > 0) {
+        //新增项目信息
+        if (projectService.insert(projectInfo) > Constants.DB_SUCCESS_FLAG) {
             logger.info("新增项目信息：" + projectInfo.toString());
             return WebResult.success();
         } else {
@@ -109,13 +117,10 @@ public class ProjectController {
         if (StringUtils.isEmpty(oid)) {
             return WebResult.needParams("oid");
         }
-
-        if (projectService.delete(oid) > 0) {
+        if (projectService.delete(oid) > Constants.DB_SUCCESS_FLAG) {
             return WebResult.success();
         } else {
             return WebResult.unKnown();
         }
-
-
     }
 }

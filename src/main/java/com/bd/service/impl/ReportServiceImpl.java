@@ -1,5 +1,6 @@
 package com.bd.service.impl;
 
+import com.bd.common.Constants;
 import com.bd.model.Report;
 import com.bd.model.mapper.ReportMapper;
 import com.bd.service.ReportService;
@@ -31,7 +32,7 @@ public class ReportServiceImpl implements ReportService {
 
     @Override
     public Report selectById(String oid) {
-        return null;
+        return reportMapper.selectByPrimaryKey(oid);
     }
 
     @Override
@@ -42,6 +43,10 @@ public class ReportServiceImpl implements ReportService {
 
     @Override
     public boolean update(Report report) {
+
+        if (reportMapper.updateByPrimaryKey(report) > Constants.DB_SUCCESS_FLAG) {
+            return true;
+        }
         return false;
     }
 

@@ -76,7 +76,30 @@ public interface ProjectInfoMapper {
             @Result(column = "outime", property = "outime", jdbcType = JdbcType.TIMESTAMP),
             @Result(column = "isdel", property = "isdel", jdbcType = JdbcType.CHAR)
     })
-    List<ProjectInfo> selectAll(@Param("begin") int begin, @Param("pagesize") int pageSize);
+    List<ProjectInfo> selectByPage(@Param("begin") int begin, @Param("pagesize") int pageSize);
+
+
+    /**
+     * 查询所有项目信息
+     *
+     * @return
+     */
+    @Select({
+            "select",
+            "oid, `name`, abbr_name, project_desc, `status`, oitime, outime, isdel",
+            "from project_info  where isdel = 0"
+    })
+    @Results({
+            @Result(column = "oid", property = "oid", jdbcType = JdbcType.VARCHAR, id = true),
+            @Result(column = "name", property = "name", jdbcType = JdbcType.VARCHAR),
+            @Result(column = "abbr_name", property = "abbrName", jdbcType = JdbcType.VARCHAR),
+            @Result(column = "project_desc", property = "projectDesc", jdbcType = JdbcType.VARCHAR),
+            @Result(column = "status", property = "status", jdbcType = JdbcType.CHAR),
+            @Result(column = "oitime", property = "oitime", jdbcType = JdbcType.TIMESTAMP),
+            @Result(column = "outime", property = "outime", jdbcType = JdbcType.TIMESTAMP),
+            @Result(column = "isdel", property = "isdel", jdbcType = JdbcType.CHAR)
+    })
+    List<ProjectInfo> selectAll();
 
     @Update({
             "update project_info",
@@ -99,5 +122,7 @@ public interface ProjectInfoMapper {
      */
     @Select({"SELECT COUNT(1) FROM project_info where isdel=0"})
     int selectCount(String name);
+
+
 
 }

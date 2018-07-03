@@ -48,10 +48,10 @@ public interface ProjectInfoService {
     /**
      * 更新一个系统用户
      *
-     * @param user
+     * @param projectInfo
      * @return
      */
-    public boolean update(ProjectInfo user);
+    public int update(ProjectInfo projectInfo);
 
     /**
      * 删除指定id的系统用户
@@ -60,6 +60,12 @@ public interface ProjectInfoService {
      * @return
      */
     public int delete(String id);
+
+    /**
+     * 获取所有项目信息
+     * @return
+     */
+    public List<ProjectInfo> selectAll();
 }
 
 

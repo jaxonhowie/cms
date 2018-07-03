@@ -22,7 +22,7 @@ public class ProjectInfoServiceImpl implements ProjectInfoService {
 
     @Override
     public List<ProjectInfo> select(int page, int pageSize, String query) {
-        return projectInfoMapper.selectAll((page - 1) * pageSize, pageSize);
+        return projectInfoMapper.selectByPage((page - 1) * pageSize, pageSize);
     }
 
     @Override
@@ -42,12 +42,17 @@ public class ProjectInfoServiceImpl implements ProjectInfoService {
     }
 
     @Override
-    public boolean update(ProjectInfo user) {
-        return false;
+    public int update(ProjectInfo projectInfo) {
+        return projectInfoMapper.updateByPrimaryKey(projectInfo);
     }
 
     @Override
     public int delete(String id) {
         return projectInfoMapper.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public List<ProjectInfo> selectAll() {
+        return projectInfoMapper.selectAll();
     }
 }

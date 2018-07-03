@@ -88,7 +88,7 @@ public interface ReportMapper {
                     "    project_info c" +
                     " WHERE" +
                     "    a.userid =b.id" +
-                    " AND a.projectid=c.oid  AND a.userid=#{userid} order by a.oitime  LIMIT #{page},#{pagesize}"
+                    " AND a.projectid=c.oid  AND a.userid=#{userid} order by a.oitime desc  LIMIT #{page},#{pagesize}"
     })
     @Results({
             @Result(column = "oid", property = "oid", jdbcType = JdbcType.VARCHAR, id = true),

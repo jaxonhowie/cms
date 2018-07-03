@@ -2,10 +2,13 @@ package com.bd.controller;
 
 import com.bd.common.Constants;
 import com.bd.model.AdminUser;
+import com.bd.model.ProjectInfo;
 import com.bd.model.Report;
 import com.bd.model.WebResult;
+import com.bd.service.ProjectInfoService;
 import com.bd.service.ReportService;
 import com.bd.service.TimeRangeService;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author NiuJian
@@ -34,17 +38,28 @@ public class ReportController {
     @Autowired
     private TimeRangeService timeRangeService;
 
+    @Autowired
+    private ProjectInfoService projectInfoService;
+
     private Logger logger = LoggerFactory.getLogger(ReportController.class);
 
 
+    /**
+     * 当前用户周报列表
+     *
+     * @param page
+     * @param pageSize
+     * @param query
+     * @param map
+     * @param session
+     * @return
+     */
     @RequestMapping("/index")
     private String index(@RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "10") int pageSize,
                          @RequestParam(defaultValue = "") String query, ModelMap map, HttpSession session) {
 
         AdminUser loginUser = (AdminUser) session.getAttribute("loginUser");
         List<Report> reports = reportService.selectReportInfo(page, pageSize, loginUser.getId());
-
-        genReportTxt(reports);
 
         map.put("reports", reports);
         int count = reportService.selectCount(loginUser.getId());
@@ -56,6 +71,8 @@ public class ReportController {
         map.put("nowBegin", pageSize * (page - 1) + 1);
         map.put("nowEnd", pageSize * (page - 1) + reports.size());
 
+
+        // genReportTxt(reports);
         return "/report/index";
     }
 
@@ -80,12 +97,56 @@ public class ReportController {
 
     }
 
-
+    /**
+     * 打开编辑页面
+     *
+     * @param map
+     * @param reportId
+     * @return
+     */
     @RequestMapping("/edit")
-    private String edit(@RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "10") int pageSize,
-                        @RequestParam(defaultValue = "") String query, ModelMap map) {
+    private String edit(ModelMap map, @RequestParam(defaultValue = "") String reportId) {
+
+        List<ProjectInfo> projectInfos = projectInfoService.selectAll();
+        Report report = reportService.selectById(reportId);
+        map.put("report", report);
+        map.put("projects", projectInfos);
+
+        return "/report/edit";
+    }
+
+
+    /**
+     * 打开新增页面
+     *
+     * @param map
+     * @param ReportId
+     * @return
+     */
+    @RequestMapping("/addReport")
+    private String addReport(ModelMap map, @RequestParam(defaultValue = "") String ReportId) {
+
+        List<ProjectInfo> projectInfos = projectInfoService.selectAll();
+        map.put("projects", projectInfos);
 
         return "/report/add";
+    }
+
+
+    @RequestMapping("/editReport")
+    @ResponseBody
+    private WebResult editReport(Report report, HttpSession session) {
+
+        report.setIsdel("0");
+        if (StringUtils.isEmpty(report.getOid())) {
+            return WebResult.needParams("缺少ID参数");
+        }
+
+        if (reportService.update(report)) {
+            return WebResult.success();
+        } else {
+            return WebResult.unKnown();
+        }
     }
 
 
@@ -93,6 +154,8 @@ public class ReportController {
     @ResponseBody
     private WebResult add(Report report, HttpSession session) {
         AdminUser loginUser = (AdminUser) session.getAttribute("loginUser");
+
+
         report.setUserid(loginUser.getId() + "");
         if (reportService.insert(report) > Constants.DB_SUCCESS_FLAG) {
             return WebResult.success();
