@@ -99,7 +99,7 @@
                             <th class="sorting_disabled" tabindex="0" rowspan="1" colspan="1" >ID</th>
                             <th class="sorting_disabled" tabindex="0"  rowspan="1" colspan="1">用户名</th>
                             <th class="sorting_disabled" tabindex="0"  rowspan="1" colspan="1">邮箱</th>
-                            <th class="hidden-480 sorting_disabled" tabindex="0" rowspan="1" colspan="1">创建者</th>
+                            <th class="hidden-480 sorting_disabled" tabindex="0" rowspan="1" colspan="1">登录名</th>
                             <th class="sorting_disabled" tabindex="0"  rowspan="1" colspan="1" >状态</th>
                             <th class="hidden-480 sorting_disabled" tabindex="0"  rowspan="1" colspan="1" >最后登录时间</th>
                             <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="">操作</th>
@@ -122,7 +122,8 @@
                             </td>
                             <td>${user.name}</td>
                             <td>${user.email!}</td>
-                            <td class="hidden-480"><#if user.creator==0>系统初始化用户<#else>${user.createUser!}</#if></td>
+                            <td>${user.loginname!}</td>
+                            <#--<td class="hidden-480"><#if user.creator==0>系统初始化用户<#else>${user.createUser!}</#if></td>-->
                             <td><#if user.flag==1><p class="green">启用<#else ><p class="red">禁用</#if></p></td>
                             <td class="hidden-480">
                                 <#if user.logintime??>${user.logintime?string("yyyy-MM-dd HH:mm:ss")}<#else >从未登录</#if>

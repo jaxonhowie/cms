@@ -85,13 +85,13 @@
                                     </select> 条</label>
                                 </div>
                             </div>
-                            <div class="col-xs-6">
-                                <div id="dynamic-table_filter" class="dataTables_filter"><label>搜索:
-                                    <input type="search" name="query" value="${query!}" class="form-control input-sm"
-                                           placeholder="" aria-controls="dynamic-table"></label>
+                            <#--<div class="col-xs-6">-->
+                                <#--<div id="dynamic-table_filter" class="dataTables_filter"><label>搜索:-->
+                                    <#--<input type="search" name="query" value="${query!}" class="form-control input-sm"-->
+                                           <#--placeholder="" aria-controls="dynamic-table"></label>-->
 
-                                </div>
-                            </div>
+                                <#--</div>-->
+                            <#--</div>-->
                         </div>
                     </form>
                     <table id="dynamic-table" class="table table-striped table-bordered table-hover dataTable no-footer"

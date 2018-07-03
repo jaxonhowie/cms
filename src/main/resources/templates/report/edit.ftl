@@ -220,6 +220,13 @@
             });
 
 
+            function isNo(str) {
+                var reg = /\D/;
+                return reg.test(str.val());
+                /*进行验证*/
+            }
+
+
             function add() {
                 if (!vali($("#rangeid"))) {
                     alert("时间范围不能为空");
@@ -234,7 +241,11 @@
                     return;
                 }
                 if (!vali($("#progress"))) {
-                    alert("时间进度为空");
+                    alert("时间进度不能为空");
+                    return;
+                }
+                if (isNo($("#progress"))) {
+                    alert("时间进度必须是0-100的数字");
                     return;
                 }
                 if (!vali($("#content1"))) {

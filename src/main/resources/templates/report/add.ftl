@@ -119,7 +119,7 @@
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right"> 进度 </label>
                             <div class="col-sm-9">
-                                <input type="text" id="progress" name="name" placeholder="实际进度（百分比）"
+                                <input type="text" id="progress" name="progress" placeholder="实际进度（百分比）"
                                        class="col-xs-10 col-sm-5">
                             </div>
 
@@ -128,7 +128,7 @@
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right"> 工作内容 </label>
                             <div class="col-sm-9">
-                                <input type="text" id="content1" name="name" placeholder=" 工作内容"
+                                <input type="text" id="content1" name="content1" placeholder=" 工作内容"
                                        class="col-md-9 ">
                             </div>
 
@@ -216,7 +216,7 @@
 
             function isNo(str) {
                 var reg = /\D/;
-                return reg.test(str);
+                return reg.test(str.val());
                 /*进行验证*/
             }
 
@@ -235,7 +235,7 @@
                     return;
                 }
                 if (!vali($("#progress"))) {
-                    alert("时间进度为空");
+                    alert("时间进度不能为空");
                     return;
                 }
                 if (isNo($("#progress"))) {
@@ -259,7 +259,7 @@
                     },
                     success: function (response) {
                         if (response.code == 1) {
-                            alert("更新成功", function () {
+                            alert("添加成功", function () {
                                 self.location = document.referrer;
                             });
                         }
