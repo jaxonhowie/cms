@@ -61,7 +61,7 @@ public class AdminUserServiceImpl implements AdminUserService {
 
     @Override
     public boolean insert(AdminUser user) {
-        logger.info("user is :" + user.toString());
+        logger.info("insert user is :" + user.toString());
         user.setPsw(MD5Util.MD5(user.getPsw()));
         user.setLogintime(new Date());
         return userMapper.insertSelective(user) > 0;

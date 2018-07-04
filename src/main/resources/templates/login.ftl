@@ -65,14 +65,14 @@
 												<fieldset>
 													<label class="block clearfix">
 														<span class="block input-icon input-icon-right">
-															<input type="text" name="name" class="form-control" placeholder="请输入用户名/邮箱" value="root" />
+															<input type="text" name="name" class="form-control" placeholder="请输入用户名/邮箱"  />
 															<i class="ace-icon fa fa-user"></i>
 														</span>
 													</label>
 
 													<label class="block clearfix">
 														<span class="block input-icon input-icon-right">
-															<input type="password" name="pass" class="form-control" placeholder="请输入密码" value="root"/>
+															<input type="password" name="pass" class="form-control" placeholder="请输入密码" />
 															<i class="ace-icon fa fa-lock"></i>
 														</span>
 													</label>
