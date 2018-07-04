@@ -60,5 +60,10 @@ public class ReportServiceImpl implements ReportService {
         return reportMapper.selectReportInfo((page - 1) * pageSize, pageSize, userid);
     }
 
+    @Override
+    public List<Report> selectReportByManager(String queryDate) {
+        return reportMapper.selectReportByManager(queryDate);
+    }
+
 
 }

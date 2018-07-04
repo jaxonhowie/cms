@@ -1,5 +1,7 @@
 package com.bd.common;
 
+import java.text.SimpleDateFormat;
+
 /**
  * @author NiuJian
  * @date 2018/6/21
@@ -22,7 +24,17 @@ public class Constants {
     public static final int DB_SUCCESS_FLAG = 0;
 
     /**
-     * 周报展示内容
+     * 本周报展示内容
      */
-    public static final String REPORT_CONTENT = "【%PROJECT%】%CONTENT% （%RANGE%） 实际进度：%PROGRESS% 负责人：%LOGINNAME% ";
+    public static final String REPORT_CONTENT_THIS_WEEK = "【%PROJECT%】%CONTENT% （%RANGE%） 实际进度：%PROGRESS% 负责人：%LOGINNAME% ";
+
+    /**
+     * 下周报展示内容
+     */
+    public static final String REPORT_CONTENT_NEXT_WEEK = "【%PROJECT%】%CONTENT% （%RANGE%） 预计进度：%PROGRESS% 负责人：%LOGINNAME% ";
+
+    /**
+     * 获取周一时间格式化
+     */
+    public static final SimpleDateFormat SDF = new SimpleDateFormat("yyyy-MM-dd 00:00:00");
 }

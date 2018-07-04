@@ -81,7 +81,7 @@ public interface ReportMapper {
                     "    a.rangeid ," +
                     "    a.progress ," +
                     "    a.oitime ," +
-                    "     a.type "+
+                    "     a.type " +
                     "FROM" +
                     "    report a," +
                     "    admin_user b ," +
@@ -99,7 +99,7 @@ public interface ReportMapper {
             @Result(column = "progress", property = "progress", jdbcType = JdbcType.VARCHAR),
             @Result(column = "oitime", property = "oitime", jdbcType = JdbcType.TIMESTAMP)
     })
-    List<Report> selectReportInfo(@Param("page") int page, @Param("pagesize") int pageSize,@Param("userid") int userid);
+    List<Report> selectReportInfo(@Param("page") int page, @Param("pagesize") int pageSize, @Param("userid") int userid);
 
     @Update({
             "update report",
@@ -119,4 +119,36 @@ public interface ReportMapper {
 
     @Select("select count(1) from report where userid=#{userid} ")
     int selectCount(@Param("userid") int userid);
+
+
+    /**
+     * 获取本周周报
+     *
+     * @param queryDate
+     * @return
+     */
+    @Select({"SELECT " +
+            "    a.oid ," +
+            "    a.userid," +
+            "    a.type ," +
+            "    b.loginname AS loginname," +
+            "    c.name      AS projectname," +
+            "    a.content ," +
+            "    a.rangeid ," +
+            "    a.progress ," +
+            "    a.oitime" +
+            " FROM" +
+            "    report a," +
+            "    admin_user b ," +
+            "    project_info c" +
+            " WHERE" +
+            "    a.userid =b.id" +
+            " AND a.projectid=c.oid" +
+            " AND a.oitime >#{queryDate}" +
+            " ORDER BY " +
+            "    projectname," +
+            "    loginname," +
+            "    a.type," +
+            "    a.oitime DESC"})
+    List<Report> selectReportByManager(@Param("queryDate") String queryDate);
 }

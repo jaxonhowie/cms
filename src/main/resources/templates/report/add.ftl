@@ -110,7 +110,7 @@
                                 <select class="col-xs-10 col-sm-5" id="type">
                                     <option value="">&nbsp;</option>
                                     <option value="0">本周周报</option>
-                                    <option value="1">下周周报</option>
+                                    <option value="1">下周计划</option>
                                 </select>
                             </div>
                         </div>

@@ -8,7 +8,9 @@ import com.bd.model.WebResult;
 import com.bd.service.ProjectInfoService;
 import com.bd.service.ReportService;
 import com.bd.service.TimeRangeService;
+import com.bd.util.DateUtil;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.time.DateUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -71,8 +75,8 @@ public class ReportController {
         map.put("nowBegin", pageSize * (page - 1) + 1);
         map.put("nowEnd", pageSize * (page - 1) + reports.size());
 
-
-        // genReportTxt(reports);
+        List<Report> reportAll = reportService.selectReportByManager(Constants.SDF.format(DateUtil.getThisWeekMonday(new Date())));
+        genReportTxt(reportAll);
         return "/report/index";
     }
 
@@ -83,16 +87,27 @@ public class ReportController {
 
 //        String result = "【%s】%s （%s） 实际进度：%s %  负责人：%s ";
 
+
+        List<String> reportText=new ArrayList<String>();
         String str = null;
         for (Report report : reports) {
-            str = Constants.REPORT_CONTENT.replaceAll("%PROJECT%", report.getProjectname());
-            str = str.replaceAll("%CONTENT%", report.getContent());
-            str = str.replaceAll("%RANGE%", report.getRangeid());
-            str = str.replaceAll("%PROGRESS%", report.getProgress());
-            str = str.replaceAll("%LOGINNAME%", report.getLoginname());
-
+            if (StringUtils.equals(report.getType(), "0")) {
+                str = Constants.REPORT_CONTENT_THIS_WEEK.replaceAll("%PROJECT%", report.getProjectname());
+                str = str.replaceAll("%CONTENT%", report.getContent());
+                str = str.replaceAll("%RANGE%", report.getRangeid());
+                str = str.replaceAll("%PROGRESS%", report.getProgress());
+                str = str.replaceAll("%LOGINNAME%", report.getLoginname());
+            } else {
+                str = Constants.REPORT_CONTENT_NEXT_WEEK.replaceAll("%PROJECT%", report.getProjectname());
+                str = str.replaceAll("%CONTENT%", report.getContent());
+                str = str.replaceAll("%RANGE%", report.getRangeid());
+                str = str.replaceAll("%PROGRESS%", report.getProgress());
+                str = str.replaceAll("%LOGINNAME%", report.getLoginname());
+            }
+            reportText.add(str);
 //            System.out.println(String.format(result,report.getProjectname(),report.getContent(), report.getRangeid(), report.getProgress(), report.getLoginname()));
-            logger.info("RESULT:" + str);
+//            logger.info("RESULT:" + str);
+            System.out.println(str);
         }
 
     }

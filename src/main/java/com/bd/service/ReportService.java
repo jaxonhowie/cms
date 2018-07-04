@@ -62,10 +62,17 @@ public interface ReportService {
     public int delete(String id);
 
     /**
-     *
      * @param page
      * @param pageSize
      * @return
      */
-    public List<Report> selectReportInfo(int page, int pageSize,int userid);
+    public List<Report> selectReportInfo(int page, int pageSize, int userid);
+
+    /**
+     * 管理员获取本周周报时间
+     *
+     * @param queryDate
+     * @return
+     */
+    public List<Report> selectReportByManager(String queryDate);
 }
